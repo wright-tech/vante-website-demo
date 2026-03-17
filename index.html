@@ -17,8 +17,6 @@
       font-style: normal;
     }
 
-    /* Butler Font Family Definition */
-
     @font-face {
       font-family: 'Butler';
       src: url('fonts/Butler/Butler-Free-Rmn.woff') format('woff');
@@ -55,7 +53,7 @@
       font-family: 'Butler';
       src: url('fonts/Butler/Butler-Free-Bd.woff') format('woff');
       src: url('fonts/Butler/Butler-Free-Bd.woff2') format('woff2');
-      font-weight: bold; /* or 700 */
+      font-weight: bold;
       font-style: normal;
     }
 
@@ -156,7 +154,6 @@
       will-change: transform, border-radius, box-shadow;
     }
 
-    /* Background videos */
     .video-layer {
       position: absolute;
       inset: 0;
@@ -210,9 +207,7 @@
       position: relative;
       isolation: isolate;
       border-radius: 999px;
-      /* background: rgba(11, 24, 19, 0); */
       background: rgba(255, 247, 232, 0);
-      /* border: 1px solid rgba(216, 180, 93, 0); */
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0), 0 18px 48px rgba(0,0,0,0);
       backdrop-filter: blur(0px);
       -webkit-backdrop-filter: blur(0px);
@@ -220,7 +215,6 @@
     }
 
     .topbar.is-scrolled .topbar-inner {
-      /* background: rgba(11, 24, 19, 0.42); */
       background: rgba(255, 247, 232, 0.1);
       border-color: rgba(216, 180, 93, 0.18);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 18px 48px rgba(0,0,0,0.22);
@@ -327,7 +321,6 @@
       transform: translateY(-100%);
     }
 
-
     .menu-icon {
       font-size: 1rem;
       line-height: 1;
@@ -356,44 +349,60 @@
     }
 
     .hero-content {
-      position: relative;
+      position: absolute;
+      left: 50%;
+      bottom: 9vh;
       z-index: 3;
-      height: 100%;
+      width: min(1200px, calc(100% - 48px));
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 20px;
+      padding: 20px 0;
+      transform: translateX(-50%);
+      transform-origin: bottom center;
+      will-change: opacity, transform;
+      pointer-events: none;
     }
 
     .brand {
       font-family: var(--font-serif);
-      font-size: clamp(4rem, 12vw, 12rem);
-      font-weight: 400;
-      letter-spacing: -0.02em; /* tighter characters */
+      font-size: clamp(5rem, 11vw, 10rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
       color: var(--gold);
-      line-height: 1.02;
-      padding-top: 0.08em;
-      padding-bottom: 0.03em;
+      line-height: 1;
+      padding-top: 0.14em;
+      padding-bottom: 0.16em;
       overflow: visible;
-      text-transform: uppercase;
+      text-transform: none;
       text-shadow: none;
       margin: 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 0.01em; /* tighter spacing between characters */
+      justify-content: center;
+      gap: 0;
+      flex-wrap: nowrap;
+      max-width: min(900px, 92vw);
     }
 
     .char-wrap {
-      display: inline-block;
-      line-height: 1.02;
+      display: block;
+      line-height: 0.8;
       overflow: visible;
-      padding-top: 0.05em;
+      padding-top: 0.12em;
+      padding-bottom: 0.18em;
+      width: 100%;
+    }
+
+    .char-wrap + .char-wrap {
+      margin-top: -0.30em;
     }
 
     .char {
-      display: inline-block;
+      display: block;
       opacity: 0;
       transform: translateY(115%);
       filter: blur(6px);
@@ -405,10 +414,8 @@
     }
 
     .loaded .brand .char-wrap:nth-child(1) .char { animation-delay: 0.08s; }
-    .loaded .brand .char-wrap:nth-child(2) .char { animation-delay: 0.24s; }
-    .loaded .brand .char-wrap:nth-child(3) .char { animation-delay: 0.40s; }
-    .loaded .brand .char-wrap:nth-child(4) .char { animation-delay: 0.56s; }
-    .loaded .brand .char-wrap:nth-child(5) .char { animation-delay: 0.72s; }
+    .loaded .brand .char-wrap:nth-child(2) .char { animation-delay: 0.18s; }
+    .loaded .brand .char-wrap:nth-child(3) .char { animation-delay: 0.28s; }
 
     @keyframes charMaskReveal {
       0% {
@@ -426,42 +433,11 @@
       }
     }
 
-    .tagline-mask {
-      overflow: hidden;
-      margin-top: 8px; /* closer to the H1 */
-    }
-
+    .tagline-mask,
     .tagline {
-      font-size: clamp(1.05rem, 1.6vw, 1.6rem);
-      font-weight: 100;
-      letter-spacing: 0.01em;
-      color: rgba(255,255,255, 0.8);
-      text-shadow: none;
-      margin: 0;
-      opacity: 0;
-      transform: translateY(100%);
-      filter: blur(4px);
+      display: none !important;
     }
 
-    .loaded .animate-tagline {
-      animation: taglineMaskReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: 1.3s;
-    }
-
-    @keyframes taglineMaskReveal {
-      0% {
-        opacity: 0;
-        transform: translateY(100%);
-        filter: blur(4px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0%);
-        filter: blur(0);
-      }
-    }
-
-    /* Optional subtle haze like the mockup */
     .hero::after {
       content: "";
       position: absolute;
@@ -475,7 +451,6 @@
       );
       pointer-events: none;
     }
-
 
     .cards-stage {
       position: absolute;
@@ -528,7 +503,7 @@
       z-index: 9;
       font-family: var(--font-serif);
       font-size: clamp(3.4rem, 7vw, 7.2rem);
-      line-height: 0.84;
+      line-height: 0.75;
       letter-spacing: -0.035em;
       color: #f0cd83;
       text-shadow: none;
@@ -663,7 +638,6 @@
       color: rgba(32,32,32,0.82);
     }
 
-
     .mobile-story {
       display: none;
     }
@@ -678,26 +652,15 @@
       display: none;
     }
 
-    /* =========================================
-       BEAUTIFIED FOOTER
-    ========================================= */
-
     .site-footer {
       position: relative;
       z-index: 10;
       padding: 120px 24px 60px;
-
-      /* seamless gradient continuation */
       background: transparent;
-        /* radial-gradient(circle at 50% -10%, rgba(242, 199, 109, 0.18) 0%, rgba(242, 199, 109, 0.07) 18%, rgba(242,199,109,0) 40%),
-        radial-gradient(circle at 20% 40%, rgba(120,163,135,0.10) 0%, rgba(120,163,135,0.04) 14%, rgba(120,163,135,0) 32%),
-        linear-gradient(180deg,#0a1c16 0%, #071611 100%); */
-
       border-top: none;
       overflow: hidden;
     }
 
-    /* spotlight glow */
     .site-footer::before{
       content:"";
       position:absolute;
@@ -706,7 +669,6 @@
       transform:translateX(-50%);
       width:900px;
       height:900px;
-
       background: radial-gradient(
           circle,
           rgba(231,195,121,0.18) 0%,
@@ -714,21 +676,14 @@
           rgba(231,195,121,0.03) 35%,
           rgba(231,195,121,0) 60%
       );
-
       filter: blur(70px);
       pointer-events:none;
       animation: footerGlow 14s ease-in-out infinite alternate;
     }
 
     @keyframes footerGlow{
-      0%{
-        transform:translateX(-50%) scale(0.95);
-        opacity:.7;
-      }
-      100%{
-        transform:translateX(-50%) scale(1.05);
-        opacity:.9;
-      }
+      0%{ transform:translateX(-50%) scale(0.95); opacity:.7; }
+      100%{ transform:translateX(-50%) scale(1.05); opacity:.9; }
     }
 
     .site-footer-inner{
@@ -741,7 +696,6 @@
       align-items:start;
     }
 
-    /* logo */
     .footer-logo img{
       width:90px;
       height:auto;
@@ -778,9 +732,7 @@
       transition:opacity .25s ease;
     }
 
-    .footer-links a:hover{
-      opacity:.6;
-    }
+    .footer-links a:hover{ opacity:.6; }
 
     .footer-bottom{
       position: relative;
@@ -806,21 +758,10 @@
     }
 
     @media (max-width:768px){
-
-      .site-footer{
-        padding:80px 20px 50px;
-      }
-
-      .site-footer-inner{
-        grid-template-columns:1fr;
-        gap:26px;
-      }
-
-      .footer-bottom{
-        flex-direction:column;
-      }
+      .site-footer{ padding:80px 20px 50px; }
+      .site-footer-inner{ grid-template-columns:1fr; gap:26px; }
+      .footer-bottom{ flex-direction:column; }
     }
-
 
     @media (max-width: 768px) {
       .topbar {
@@ -840,117 +781,73 @@
         font-size: 0.82rem;
         gap: 8px;
       }
-
-      .tagline {
-        margin-top: 12px;
-      }
     }
 
     @media (max-width: 1100px) {
-      .headline-block {
-        top: 9vh;
-      }
-
+      .headline-block { top: 9vh; }
       .card-one { left: 14vw; }
       .card-two { left: 38vw; }
       .card-three { left: 62vw; }
       .card-four { left: 86vw; }
     }
 
-
     @media (min-width: 641px) and (max-width: 1100px) {
-      .hero {
-        height: 320vh;
-      }
-
-      .headline-block {
-        width: min(680px, calc(100vw - 48px));
-      }
-
+      .hero { height: 320vh; }
+      .headline-block { width: min(680px, calc(100vw - 48px)); }
       .headline-block h2 {
         font-size: clamp(3rem, 8vw, 4.8rem);
         line-height: 0.88;
         max-width: 100%;
       }
-
       .headline-block p {
         width: min(560px, calc(100vw - 72px));
         font-size: 0.98rem;
         line-height: 1.55;
       }
-
       .card-copy {
         left: 14px;
         right: 14px;
         bottom: 14px;
       }
-
       .card-copy .eyebrow {
         font-size: 0.58rem;
         margin-bottom: 4px;
       }
-
-      .card-copy h3 {
-        font-size: clamp(0.88rem, 1.25vw, 1rem);
-      }
-
-      /* add breathing room under the tagline */
-      .cards-stage {
-        margin-top: 70px;
-      }
-
-      /* ensure headline block doesn't overlap cards */
-      .headline-block {
-        margin-bottom: 50px;
-      }
-
-      /* push cards slightly lower */
-      .floating-cards {
-        margin-top: 40px;
-      }
-
+      .card-copy h3 { font-size: clamp(0.88rem, 1.25vw, 1rem); }
+      .cards-stage { margin-top: 70px; }
+      .headline-block { margin-bottom: 50px; }
+      .floating-cards { margin-top: 40px; }
     }
 
     @media (max-width: 900px) {
-      .hero {
-        height: 340vh;
-      }
-
+      .hero { height: 340vh; }
       .headline-block {
         top: 7vh;
         width: calc(100% - 28px);
       }
-
       .headline-block h2 {
         font-size: clamp(2.6rem, 11vw, 4.4rem);
         line-height: 0.88;
         max-width: calc(100vw - 28px);
       }
-
       .headline-block p {
         width: calc(100vw - 28px);
         max-width: none;
         font-size: 0.98rem;
         line-height: 1.5;
       }
-
       .headline-word.word-2 { --word-x: 34px; }
       .headline-word.word-3 { --word-x: 92px; }
-
       .card-copy {
         left: 14px;
         right: 14px;
         bottom: 14px;
       }
-
       .card-copy .eyebrow {
         font-size: 0.62rem;
         margin-bottom: 4px;
       }
-
-      .card-copy h3 {
-        font-size: clamp(0.96rem, 4.1vw, 1.3rem);
-      }
+      .card-copy h3 { font-size: clamp(0.96rem, 4.1vw, 1.3rem); }
     }
 
     @media (max-width: 640px) {
@@ -994,21 +891,10 @@
         letter-spacing: 0.06em;
       }
 
-      .center-logo img {
-        width: 42px;
-      }
-
-      .topbar-logo img {
-        width: 60px;
-      }
-
-      .topbar.is-scrolled .topbar-logo img {
-        width: 50px;
-      }
-
-      .cards-stage {
-        display: none;
-      }
+      .center-logo img { width: 42px; }
+      .topbar-logo img { width: 60px; }
+      .topbar.is-scrolled .topbar-logo img { width: 50px; }
+      .cards-stage { display: none; }
 
       .mobile-story {
         position: absolute;
@@ -1099,18 +985,9 @@
         padding-top: 32px;
       }
 
-      .site-footer-inner {
-        grid-template-columns: 1fr;
-        gap: 22px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-      }
-
-      .mobile-cards-section {
-        display: none !important;
-      }
+      .site-footer-inner { grid-template-columns: 1fr; gap: 22px; }
+      .footer-bottom { flex-direction: column; }
+      .mobile-cards-section { display: none !important; }
 
       .mobile-story,
       .mobile-story-headline,
@@ -1124,11 +1001,39 @@
         max-width: 100vw;
       }
 
-    }
+      .hero-content {
+        left: 50%;
+        width: calc(100% - 32px);
+        top: 50%;
+        bottom: auto;
+        padding: 0;
+        transform: translate(-50%, -50%);
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
 
-    /* =========================================================
-       MENU BUTTON ANIMATION
-    ========================================================= */
+      .brand {
+        font-size: clamp(3.4rem, 14vw, 5.4rem);
+        line-height: 1;
+        max-width: calc(100vw - 32px);
+        gap: 0;
+        align-items: center;
+        padding-top: 0.12em;
+        padding-bottom: 0.16em;
+      }
+
+      .char-wrap {
+        line-height: 0.92;
+        overflow: visible;
+        padding-top: 0.10em;
+        padding-bottom: 0.16em;
+      }
+
+      .char-wrap + .char-wrap {
+        margin-top: -0.24em;
+      }
+    }
 
     .menu-trigger {
       appearance: none;
@@ -1138,13 +1043,9 @@
       overflow: visible;
       background: transparent;
       color: rgba(255, 255, 255, 0.92);
-      /* font: inherit; */
     }
 
-    .menu-trigger::before {
-      content: none;
-    }
-
+    .menu-trigger::before { content: none; }
     .menu-trigger:hover {
       background: transparent;
       box-shadow: none;
@@ -1189,10 +1090,6 @@
       transform: rotate(-45deg);
     }
 
-    /* =========================================================
-       FULL PAGE MENU
-    ========================================================= */
-
     .mega-menu {
       position: fixed;
       inset: 0;
@@ -1221,10 +1118,7 @@
       will-change: transform;
     }
 
-    .mega-menu-inner {
-      min-height: 100%;
-      padding: 20px 16px 18px;
-    }
+    .mega-menu-inner { min-height: 100%; padding: 20px 16px 18px; }
 
     .mega-menu-layout {
       position: relative;
@@ -1289,9 +1183,7 @@
     }
 
     .mega-menu-card:hover img,
-    .mega-menu-card:focus-visible img {
-      transform: scale(1.04);
-    }
+    .mega-menu-card:focus-visible img { transform: scale(1.04); }
 
     .mega-menu-card-label {
       position: absolute;
@@ -1324,9 +1216,7 @@
       width: 100%;
     }
 
-    .mega-menu-links li + li {
-      margin-top: 20px;
-    }
+    .mega-menu-links li + li { margin-top: 20px; }
 
     .mega-menu-links a {
       display: inline-block;
@@ -1377,30 +1267,13 @@
       border-radius: 999px;
     }
 
-    .mega-menu-close span:nth-child(1) {
-      transform: rotate(45deg);
-    }
+    .mega-menu-close span:nth-child(1) { transform: rotate(45deg); }
+    .mega-menu-close span:nth-child(2) { transform: rotate(-45deg); }
 
-    .mega-menu-close span:nth-child(2) {
-      transform: rotate(-45deg);
-    }
-
-    body.menu-open {
-      overflow: hidden;
-    }
-
-    body.menu-open .mega-menu {
-      pointer-events: auto;
-    }
-
-    body.menu-open .mega-menu-backdrop {
-      opacity: 1;
-    }
-
-    body.menu-open .mega-menu-panel {
-      transform: translateY(0);
-    }
-
+    body.menu-open { overflow: hidden; }
+    body.menu-open .mega-menu { pointer-events: auto; }
+    body.menu-open .mega-menu-backdrop { opacity: 1; }
+    body.menu-open .mega-menu-panel { transform: translateY(0); }
     body.menu-open .mega-menu-card,
     body.menu-open .mega-menu-nav {
       opacity: 1;
@@ -1419,52 +1292,27 @@
         padding-right: 0;
       }
 
-      .mega-menu-nav {
-        padding: 8px 12px 24px;
-      }
-
-      .mega-menu-links a {
-        font-size: clamp(2rem, 8vw, 3.2rem);
-      }
-
-      .mega-menu-card {
-        min-height: 240px;
-      }
+      .mega-menu-nav { padding: 8px 12px 24px; }
+      .mega-menu-links a { font-size: clamp(2rem, 8vw, 3.2rem); }
+      .mega-menu-card { min-height: 240px; }
     }
 
     @media (max-width: 768px) {
-      .mega-menu-inner {
-        padding: 16px 12px 16px;
-      }
-
-      .mega-menu-layout {
-        gap: 16px;
-      }
-
-      .mega-menu-visuals {
-        grid-template-rows: repeat(2, minmax(200px, 1fr));
-      }
-
+      .mega-menu-inner { padding: 16px 12px 16px; }
+      .mega-menu-layout { gap: 16px; }
+      .mega-menu-visuals { grid-template-rows: repeat(2, minmax(200px, 1fr)); }
       .mega-menu-card {
         min-height: 200px;
         border-radius: 18px;
       }
-
       .mega-menu-card-label {
         left: 18px;
         right: 18px;
         bottom: 16px;
         font-size: clamp(1.7rem, 9vw, 2.6rem);
       }
-
-      .mega-menu-links li + li {
-        margin-top: 14px;
-      }
-
-      .mega-menu-links a {
-        font-size: clamp(1.8rem, 9vw, 2.7rem);
-      }
-
+      .mega-menu-links li + li { margin-top: 14px; }
+      .mega-menu-links a { font-size: clamp(1.8rem, 9vw, 2.7rem); }
       .mega-menu-close {
         top: 14px;
         right: 14px;
@@ -1472,7 +1320,6 @@
         height: 58px;
       }
     }
-
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
@@ -1524,21 +1371,14 @@
           <div class="center-logo"><img src="vante_logo.png" alt="Vante logo"></div>
 
           <div class="hero-content" id="heroContent">
-            <h1 class="brand brand-mask-reveal" aria-label="VANTE">
-              <span class="char-wrap"><span class="char">V</span></span>
-              <span class="char-wrap"><span class="char">A</span></span>
-              <span class="char-wrap"><span class="char">N</span></span>
-              <span class="char-wrap"><span class="char">T</span></span>
-              <span class="char-wrap"><span class="char">É</span></span>
+            <h1 class="brand brand-mask-reveal" aria-label="Elevating urban futures">
+              <span class="char-wrap"><span class="char">Elevating</span></span>
+              <span class="char-wrap"><span class="char">urban</span></span>
+              <span class="char-wrap"><span class="char">futures</span></span>
             </h1>
-
-            <div class="tagline-mask">
-              <p class="tagline animate-tagline">elevating urban futures</p>
-            </div>
           </div>
         </div>
       </div>
-
 
       <div class="cards-stage">
         <div class="headline-block" id="headlineBlock">
@@ -1638,26 +1478,12 @@
     </div>
   </section>
 
-  <!-- <section class="after-content" id="contact">
-    <div class="after-content-inner">
-      <h3>Build beyond expectation</h3>
-      <p>
-        This follow-on section is now ready for your company story, featured developments, awards, or a call to action.
-        The hero above shrinks into a smaller video card, while four supporting cards appear in a more editorial, scattered layout around a centered headline.
-      </p>
-    </div>
-  </section> -->
-
   <footer class="site-footer" id="contact">
-
     <div class="site-footer-inner">
-
-      <!-- Logo -->
       <div class="footer-logo">
         <img src="vante_logo.png" alt="Vanté logo">
       </div>
 
-      <!-- Links -->
       <div>
         <div class="footer-heading">Explore</div>
         <ul class="footer-links">
@@ -1668,7 +1494,6 @@
         </ul>
       </div>
 
-      <!-- Contact -->
       <div>
         <div class="footer-heading">Contact</div>
         <ul class="footer-contact">
@@ -1677,14 +1502,12 @@
           <li><a href="tel:+6500000000">+65 0000 0000</a></li>
         </ul>
       </div>
-
     </div>
 
     <div class="footer-bottom">
       <span>© 2026 Vanté. All rights reserved.</span>
       <span>Privacy Policy</span>
     </div>
-
   </footer>
 
   <div class="mega-menu" id="megaMenu" aria-hidden="true">
@@ -1724,8 +1547,8 @@
 
   <script>
     window.addEventListener("load", () => {
-    document.body.classList.add("loaded");
-  });
+      document.body.classList.add("loaded");
+    });
 
     const videos = document.querySelectorAll(".bg-video");
     let currentIndex = 0;
@@ -1758,7 +1581,6 @@
           playVideo(currentIndex);
         });
 
-        // Fallback: if metadata fails or video cannot play, skip to next
         video.addEventListener("error", () => {
           currentIndex = (index + 1) % videos.length;
           playVideo(currentIndex);
@@ -1789,6 +1611,50 @@
       window.addEventListener('resize', updateTopbarState);
     }
 
+
+    function resetHeroSequenceState() {
+      const heroCard = document.getElementById("heroCard");
+      const heroContent = document.getElementById("heroContent");
+      const headline = document.getElementById("headlineBlock");
+      const logo = document.querySelector('.center-logo');
+      const floatingCards = document.querySelector('.floating-cards');
+      const mobileHeadline = document.getElementById('mobileStoryHeadline');
+      const resetTargets = [
+        heroCard,
+        heroContent,
+        headline,
+        logo,
+        floatingCards,
+        document.getElementById("cardOne"),
+        document.getElementById("cardTwo"),
+        document.getElementById("cardThree"),
+        document.getElementById("cardFour"),
+        document.getElementById('mobileStoryCardOne'),
+        document.getElementById('mobileStoryCardTwo'),
+        document.getElementById('mobileStoryCardThree'),
+        document.getElementById('mobileStoryCardFour'),
+        mobileHeadline
+      ].filter(Boolean);
+
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.vars && trigger.vars.id === 'hero-sequence') trigger.kill();
+      });
+      gsap.killTweensOf(resetTargets);
+      gsap.set(resetTargets, { clearProps: 'all' });
+
+      if (headline) {
+        headline.style.removeProperty('width');
+        headline.style.removeProperty('left');
+        headline.style.removeProperty('top');
+        headline.style.removeProperty('transform');
+        headline.style.removeProperty('--tagline-top');
+        headline.style.removeProperty('--tagline-left');
+      }
+      if (floatingCards) {
+        floatingCards.classList.remove('mobile-carousel-active');
+      }
+    }
+
     function setupHeroSequence() {
       const hero = document.getElementById("scrollStage");
       const stickyScene = document.querySelector(".sticky-scene");
@@ -1804,10 +1670,7 @@
         document.getElementById("cardFour")
       ];
 
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.vars && trigger.vars.id === 'hero-sequence') trigger.kill();
-      });
-      gsap.killTweensOf([heroCard, heroContent, headline, logo, floatingCards, ...cards]);
+      resetHeroSequenceState();
 
       const vw = window.innerWidth;
       const isMobile = vw < 640;
@@ -1885,7 +1748,13 @@
             pin: stickyScene,
             pinSpacing: true,
             anticipatePin: 1,
-            invalidateOnRefresh: true
+            invalidateOnRefresh: true,
+            onUpdate: self => {
+              const fadeProgress = Math.min(self.progress / 0.22, 1);
+              gsap.set(heroContent, {
+                opacity: 1 - fadeProgress
+              });
+            }
           }
         });
 
@@ -1899,8 +1768,6 @@
         }, 0)
         .to(heroContent, {
           opacity: 0,
-          y: -16,
-          scale: 0.92,
           duration: 0.2
         }, 0.02)
         .to(mobileHeadline, {
@@ -1981,7 +1848,13 @@
             scrub: 1,
             pin: stickyScene,
             anticipatePin: 1,
-            invalidateOnRefresh: true
+            invalidateOnRefresh: true,
+            onUpdate: self => {
+              const fadeProgress = Math.min(self.progress / 0.2, 1);
+              gsap.set(heroContent, {
+                opacity: 1 - fadeProgress
+              });
+            }
           }
         });
 
@@ -1994,7 +1867,7 @@
           boxShadow: 'none',
           duration: 0.28
         }, 0)
-        .to(heroContent, { opacity: 0, y: -18, scale: 0.86, duration: 0.2 }, 0)
+        .to(heroContent, { opacity: 0, duration: 0.2 }, 0)
         .to(logo, { opacity: 0, duration: 0.14 }, 0)
         .to(headline, { opacity: 1, y: 0, duration: 0.16 }, 0.16)
         .to(words[0], { opacity: 1, y: 0, duration: 0.14 }, 0.18)
@@ -2063,7 +1936,14 @@
           end: isTablet ? '+=2200' : '+=2100',
           scrub: 1.05,
           pin: stickyScene,
-          anticipatePin: 1
+          anticipatePin: 1,
+          onUpdate: self => {
+            const fadeProgress = Math.min(self.progress / 0.18, 1);
+            gsap.set(heroContent, {
+              opacity: 1 - fadeProgress,
+              y: fadeProgress * -26
+            });
+          }
         }
       });
 
@@ -2075,7 +1955,7 @@
         borderRadius: 8,
         boxShadow: 'none'
       }, 0)
-      .to(heroContent, { opacity: 0, y: -18, scale: 0.82 }, 0)
+      .to(heroContent, { opacity: 0 }, 0)
       .to(logo, { opacity: 0 }, 0)
       .to(headline, { opacity: 1, y: 0 }, 0.16)
       .to(words[0], { opacity: 1, y: 0 }, 0.14)
@@ -2090,6 +1970,7 @@
 
     function initPageEffects() {
       setupTopbarBehavior();
+      resetHeroSequenceState();
       setupHeroSequence();
       requestAnimationFrame(() => {
         const topbar = document.getElementById('topbar');
@@ -2101,17 +1982,32 @@
 
     window.addEventListener('load', initPageEffects);
     let resizeTimeout;
+    function handleResponsiveRefresh() {
+      const topbar = document.getElementById('topbar');
+      if (topbar) {
+        topbar.classList.toggle('is-scrolled', window.scrollY > 12);
+      }
+      resetHeroSequenceState();
+      setupHeroSequence();
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    }
+
     window.addEventListener('resize', function () {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(function () {
-        const topbar = document.getElementById('topbar');
-        if (topbar) {
-          topbar.classList.toggle('is-scrolled', window.scrollY > 12);
-        }
-        setupHeroSequence();
-        ScrollTrigger.refresh();
-      }, 150);
+      resizeTimeout = setTimeout(handleResponsiveRefresh, 220);
     });
+
+    window.addEventListener('orientationchange', function () {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(handleResponsiveRefresh, 260);
+    });
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', function () {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(handleResponsiveRefresh, 220);
+      });
+    }
 
     window.addEventListener("DOMContentLoaded", function () {
       setupTopbarBehavior();
