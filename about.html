@@ -1,0 +1,2699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanté — About</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'Butler';
+      src: url('fonts/Butler/Butler-Free-Rmn.woff') format('woff');
+      src: url('fonts/Butler/Butler-Free-Rmn.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'Butler';
+      src: url('fonts/Butler/Butler-Free-Lgt.woff') format('woff');
+      src: url('fonts/Butler/Butler-Free-Lgt.woff2') format('woff2');
+      font-weight: 300;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'Butler';
+      src: url('fonts/Butler/Butler-Free-Med.woff') format('woff');
+      src: url('fonts/Butler/Butler-Free-Med.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'Butler';
+      src: url('fonts/Butler/Butler-Free-Bd.woff') format('woff');
+      src: url('fonts/Butler/Butler-Free-Bd.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    :root {
+      --gold: #e7c379;
+      --gold-soft: rgba(231, 195, 121, 0.86);
+      --text-light: rgba(255,255,255,0.88);
+      --text-light-soft: rgba(255,255,255,0.72);
+      --border-light: rgba(255,255,255,0.08);
+      --font-serif: "Butler", "Times New Roman", serif;
+      --font-sans: "Montserrat", Arial, sans-serif;
+      --mission-card-height: clamp(320px, 50vh, 420px);
+      --mission-header-space: clamp(150px, 18vh, 160px);
+      --mission-gap: 24px;
+      --mission-radius: 15px;
+      --leaders-card-radius: 15px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: clip;
+      font-family: var(--font-sans);
+      background:
+        radial-gradient(circle at 16% 18%, rgba(84, 133, 112, 0.22) 0%, rgba(84, 133, 112, 0.10) 12%, rgba(84, 133, 112, 0.00) 28%),
+        radial-gradient(circle at 82% 14%, rgba(120, 163, 135, 0.16) 0%, rgba(120, 163, 135, 0.07) 11%, rgba(120, 163, 135, 0.00) 26%),
+        radial-gradient(circle at 34% 72%, rgba(81, 126, 106, 0.12) 0%, rgba(81, 126, 106, 0.05) 10%, rgba(81, 126, 106, 0.00) 24%),
+        linear-gradient(180deg, #17352b 0%, #0a1c16 100%);
+      background-attachment: fixed;
+      color: white;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-y: auto;
+      max-width: 100vw;
+    }
+
+    body.is-loading {
+      overflow: hidden;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .page-transition {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(84, 133, 112, 0.22) 0%, rgba(84, 133, 112, 0.10) 12%, rgba(84, 133, 112, 0.00) 28%),
+        radial-gradient(circle at 82% 14%, rgba(120, 163, 135, 0.16) 0%, rgba(120, 163, 135, 0.07) 11%, rgba(120, 163, 135, 0.00) 26%),
+        radial-gradient(circle at 34% 72%, rgba(81, 126, 106, 0.12) 0%, rgba(81, 126, 106, 0.05) 10%, rgba(81, 126, 106, 0.00) 24%),
+        linear-gradient(180deg, #17352b 0%, #0a1c16 100%);
+      opacity: 1;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    body.page-ready .page-transition {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 24px;
+      left: 0;
+      width: 100%;
+      padding: 0 32px;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .topbar-inner {
+      width: min(1320px, calc(100vw - 44px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 18px;
+      padding: 8px 18px;
+      pointer-events: auto;
+      position: relative;
+      isolation: isolate;
+      border-radius: 999px;
+      background: rgba(255, 247, 232, 0);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0);
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+    }
+
+    .topbar.is-scrolled .topbar-inner {
+      background: rgba(255, 247, 232, 0.10);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .topbar-item {
+      position: relative;
+      z-index: 1;
+      transform: none !important;
+    }
+
+    #contactTrigger {
+      justify-self: start;
+      align-self: center;
+    }
+
+    #menuTrigger {
+      justify-self: end;
+      align-self: center;
+    }
+
+    .topbar-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      justify-self: center;
+      text-decoration: none;
+    }
+
+    .topbar-logo img {
+      width: 90px;
+      height: auto;
+      display: block;
+      transition: width 0.35s ease;
+    }
+
+    .topbar.is-scrolled .topbar-logo img {
+      width: 65px;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 999px;
+      color: rgba(255,255,255,0.92);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: transparent;
+      transition: color 0.25s ease, opacity 0.25s ease;
+      white-space: nowrap;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .pill-btn:hover,
+    .pill-btn:focus-visible {
+      background: transparent;
+      color: #fff;
+      outline: none;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .btn-text-roll {
+      position: relative;
+      display: inline-block;
+      height: 1.1em;
+      overflow: hidden;
+      line-height: 1.1;
+    }
+
+    .btn-text-roll > span {
+      display: block;
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      color: inherit;
+    }
+
+    .pill-btn:hover .btn-text-roll > span,
+    .pill-btn:focus-visible .btn-text-roll > span {
+      transform: translateY(-100%);
+    }
+
+    .menu-trigger {
+      background: transparent;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .menu-icon-lines {
+      width: 14px;
+      height: 12px;
+      position: relative;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .menu-icon-lines span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background: var(--gold);
+      border-radius: 999px;
+      transform-origin: center;
+      transition: transform 0.35s ease, opacity 0.25s ease, top 0.35s ease;
+    }
+
+    .menu-icon-lines span:nth-child(1) { top: 0; }
+    .menu-icon-lines span:nth-child(2) { top: 5px; }
+    .menu-icon-lines span:nth-child(3) { top: 10px; }
+
+    body.menu-open .menu-icon-lines span:nth-child(1) {
+      top: 5px;
+      transform: rotate(45deg);
+    }
+
+    body.menu-open .menu-icon-lines span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    body.menu-open .menu-icon-lines span:nth-child(3) {
+      top: 5px;
+      transform: rotate(-45deg);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      background: transparent;
+    }
+
+    .hero-about {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(16, 45, 36, 0.16), rgba(8, 24, 19, 0.90)),
+        url('https://images.unsplash.com/photo-1685979699419-071305d9c548?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;
+    }
+
+    .hero-about::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 35%, rgba(0,0,0,0.12) 100%);
+      pointer-events: none;
+    }
+
+    .hero-about-inner {
+      position: relative;
+      z-index: 2;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 190px 0 96px;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      margin-bottom: 18px;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(231, 195, 121, 0.95);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-title {
+      max-width: 8.2em;
+      font-family: var(--font-serif);
+      font-size: clamp(3.8rem, 8.5vw, 7.2rem);
+      line-height: 0.9;
+      letter-spacing: -0.045em;
+      color: var(--gold);
+      margin: 0 0 18px;
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    .hero-tagline {
+      max-width: 42rem;
+      font-size: clamp(1rem, 1.2vw, 1rem);
+      line-height: 1.72;
+      font-weight: 200;
+      color: rgba(255,255,255,0.84);
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .section-dark {
+      position: relative;
+      background: transparent;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .intro-section {
+      padding-top: 110px;
+      padding-bottom: 110px;
+    }
+
+    .intro-grid {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 500px);
+      gap: 44px;
+      align-items: stretch;
+    }
+
+    .intro-copy {
+      padding: 38px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 16px;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.82);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4.8vw, 4.4rem);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      color: var(--gold);
+      margin: 0 0 18px;
+    }
+
+    .section-text {
+      font-size: 1.08rem;
+      line-height: 1.68;
+      font-weight: 300;
+      color: var(--text-light-soft);
+    }
+
+    .intro-copy .section-text + .section-text {
+      margin-top: 16px;
+    }
+
+    .intro-media {
+      position: relative;
+      min-height: 560px;
+      height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #1b2d27;
+    }
+
+    .intro-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .intro-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9,24,19,0.06) 0%, rgba(9,24,19,0.22) 100%);
+      pointer-events: none;
+    }
+
+    .vision-section {
+      position: relative;
+      min-height: 190vh;
+      padding: 0;
+      overflow: clip;
+      background: #081511;
+    }
+
+    .vision-panel {
+      position: relative;
+      height: 100vh;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        linear-gradient(180deg, rgba(7, 21, 17, 0.38) 0%, rgba(5, 18, 14, 0.72) 55%, rgba(4, 13, 11, 0.84) 100%),
+        url('https://images.unsplash.com/photo-1728141033467-9933b142fc86?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      will-change: transform;
+    }
+
+    .vision-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(231,195,121,0.12) 0%, rgba(231,195,121,0.06) 18%, rgba(231,195,121,0) 44%),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 28%, rgba(255,255,255,0) 52%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .vision-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8,24,19,0.15) 0%, rgba(8,24,19,0.28) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .vision-inner {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, calc(100% - 56px));
+      margin: 0 auto;
+      padding: 180px 0 120px;
+    }
+
+    .vision-kicker {
+      display: inline-block;
+      margin-bottom: 18px;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.96);
+    }
+
+    .vision-copy {
+      max-width: 980px;
+    }
+
+    .vision-copy .word {
+      display: inline-block;
+      color: rgba(231, 195, 121, 0.2);
+      transition: color 0.2s linear;
+      will-change: color, opacity;
+    }
+
+    .vision-line {
+      display: block;
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: clamp(2rem, 3.2vw, 3.55rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: rgba(231, 195, 121, 0.24);
+      text-wrap: balance;
+    }
+
+    .vision-line + .vision-line {
+      margin-top: 0.18em;
+    }
+
+    .mission-section {
+      padding-top: 120px;
+      padding-bottom: 140px;
+      overflow: clip;
+    }
+
+    .mission-stage {
+      max-width: 1180px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .mission-pin-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--mission-gap);
+      min-height: calc(var(--mission-header-space) + var(--mission-card-height) + var(--mission-gap));
+    }
+
+    .mission-header {
+      min-height: var(--mission-header-space);
+      position: relative;
+      z-index: 5;
+    }
+
+    .mission-header p {
+      max-width: 42rem;
+      margin-top: 14px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-light-soft);
+    }
+
+    .mission-canvas {
+      position: relative;
+      height: var(--mission-card-height);
+      min-height: var(--mission-card-height);
+      border-radius: var(--mission-radius);
+      overflow: visible;
+    }
+
+    .mission-card {
+      position: absolute;
+      inset: 0;
+      display: block;
+      height: 100%;
+      min-height: 100%;
+      border-radius: var(--mission-radius);
+      overflow: hidden;
+      background: #1b2d27;
+      will-change: transform;
+      isolation: isolate;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .mission-card-media {
+      position: absolute;
+      inset: 0;
+      background: #1b2d27;
+    }
+
+    .mission-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.01);
+    }
+
+    .mission-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(5,18,14,0.82) 0%, rgba(5,18,14,0.50) 24%, rgba(5,18,14,0.36) 58%, rgba(5,18,14,0.12) 100%);
+      pointer-events: none;
+    }
+
+    .mission-card-copy {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      min-width: 0;
+      padding: 28px 32px 30px;
+      gap: 12px;
+    }
+
+    .mission-card-index {
+      display: inline-flex;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(231,195,121,0.22);
+      color: #f0cf89;
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .mission-card-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.65rem, 2.7vw, 2.55rem);
+      line-height: 1.02;
+      color: #f7dfaa;
+      margin: 0;
+      width: 100%;
+      text-wrap: balance;
+      font-weight: 500;
+    }
+
+    .values-section {
+      padding-top: 0;
+      padding-bottom: 72px;
+      overflow: clip;
+    }
+
+    .values-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .values-pin-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      min-height: 100vh;
+    }
+
+    .values-header {
+      max-width: 760px;
+      margin-bottom: 0;
+      position: relative;
+      z-index: 3;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .value-item {
+      position: relative;
+      min-height: 320px;
+      padding: 34px 26px 34px;
+      opacity: 0;
+      transform: translateY(40px);
+      will-change: transform, opacity;
+    }
+
+    .value-item + .value-item {
+      border-left: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .value-icon {
+      width: 58px;
+      height: 58px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 42px;
+      color: rgba(231,195,121,0.96);
+    }
+
+    .value-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .value-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 2.2vw, 2.35rem);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      color: var(--text-light-soft);
+      margin: 0 0 16px;
+      max-width: 11ch;
+      font-weight: 500;
+    }
+
+    .value-text {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.82);
+      max-width: 24rem;
+      font-weight: 300;
+    }
+
+    .leaders-section {
+      padding-top: 0;
+      padding-bottom: 180px;
+      overflow: clip;
+    }
+
+    .leaders-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .leaders-header {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .leaders-tagline {
+      max-width: 60rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      font-weight: 300;
+      color: var(--text-light-soft);
+    }
+
+    .leaders-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .leader-card {
+      position: relative;
+      border: 0;
+      border-radius: var(--leaders-card-radius);
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+      min-height: 460px;
+      text-align: left;
+      cursor: pointer;
+      padding: 0;
+      color: white;
+      opacity: 0;
+      transform: translateY(44px);
+      will-change: transform, opacity;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+    }
+
+    .leader-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      border-radius: inherit;
+      overflow: hidden;
+      transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .leader-card-inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.04) 0%,
+          rgba(0, 0, 0, 0.10) 22%,
+          rgba(8, 24, 19, 0.34) 52%,
+          rgba(8, 24, 19, 0.82) 100%
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.06) 0%,
+          rgba(255,255,255,0.00) 36%
+        );
+    }
+
+    .leader-card:hover .leader-card-inner,
+    .leader-card:focus-visible .leader-card-inner {
+      transform: scale(1.03);
+    }
+
+    .leader-card-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: #21342d;
+    }
+
+    .leader-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .leader-card:hover .leader-card-media img,
+    .leader-card:focus-visible .leader-card-media img {
+      transform: scale(1.06);
+    }
+
+    .leader-card-copy {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      padding: 26px 24px 24px;
+    }
+
+    .leader-role {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.92);
+    }
+
+    .leader-name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 2vw, 2rem);
+      line-height: 0.98;
+      color: #f3d28d;
+      margin-bottom: 10px;
+    }
+
+    .leader-preview {
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.82);
+      max-width: 28ch;
+    }
+
+    .leader-cta {
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+      transition: gap 0.35s ease, color 0.35s ease;
+    }
+
+    .leader-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .leader-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .leader-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(4, 16, 12, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .leader-modal-dialog {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, 100%);
+      max-height: 92vh;
+      overflow: hidden;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(21,53,43,0.96) 0%, rgba(10,28,22,0.98) 100%);
+      box-shadow: 0 28px 90px rgba(0,0,0,0.38);
+    }
+
+    .leader-modal-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+      min-height: 100%;
+      max-height: 92vh;
+    }
+
+    .leader-modal-media {
+      position: relative;
+      min-height: 100%;
+      background: #20332c;
+    }
+
+    .leader-modal-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .leader-modal-content {
+      padding: 34px 34px 30px;
+      overflow-y: auto;
+      max-height: 92vh;
+    }
+
+    .leader-modal-role {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.92);
+    }
+
+    .leader-modal-name {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      line-height: 0.95;
+      color: #f3d28d;
+      margin-bottom: 18px;
+    }
+
+    .leader-modal-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      font-weight: 400;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .leader-modal-text + .leader-modal-text {
+      margin-top: 14px;
+    }
+
+    .leader-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 3;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(231,195,121,0.4);
+      border-radius: 999px;
+      background: rgba(7, 24, 18, 0.5);
+      color: white;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .leader-modal-close:hover,
+    .leader-modal-close:focus-visible {
+      transform: rotate(90deg);
+      border-color: rgba(231,195,121,0.85);
+      background: rgba(7, 24, 18, 0.8);
+      outline: none;
+    }
+
+    .leader-modal-close span {
+      position: absolute;
+      width: 18px;
+      height: 1.5px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 999px;
+    }
+
+    .leader-modal-close span:first-child {
+      transform: rotate(45deg);
+    }
+
+    .leader-modal-close span:last-child {
+      transform: rotate(-45deg);
+    }
+
+    .reveal-footer {
+      position: relative;
+      z-index: 3;
+      min-height: 88svh;
+      color: #fff;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(6, 24, 19, 0.12) 0%, rgba(6, 24, 19, 0.42) 38%, rgba(5, 18, 15, 0.82) 100%),
+        url('https://images.unsplash.com/photo-1757924432508-d4e92411caeb?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;
+    }
+
+    .reveal-footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(231,195,121,0.18) 0%, rgba(231,195,121,0.06) 24%, rgba(231,195,121,0) 54%),
+        linear-gradient(180deg, rgba(9, 27, 22, 0.18) 0%, rgba(7, 19, 16, 0.72) 100%);
+      pointer-events: none;
+    }
+
+    .reveal-footer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(243,239,231,0) 0%, rgba(243,239,231,0.02) 18%, rgba(0,0,0,0) 100%);
+      pointer-events: none;
+    }
+
+    .reveal-footer-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1240px;
+      min-height: 88svh;
+      margin: 0 auto;
+      padding: 64px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .reveal-footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.5fr 0.5fr;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .reveal-footer-kicker {
+      display: inline-block;
+      margin-bottom: 18px;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.92);
+    }
+
+    .reveal-footer-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: #f4d596;
+      margin: 0 0 16px;
+      max-width: 7.5em;
+    }
+
+    .reveal-footer-copy {
+      max-width: 32rem;
+      font-size: 1rem;
+      line-height: 1.72;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .reveal-footer-heading {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.9);
+      margin-bottom: 16px;
+    }
+
+    .reveal-footer-links,
+    .reveal-footer-contact {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .reveal-footer-links li,
+    .reveal-footer-contact li {
+      margin-bottom: 12px;
+      color: rgba(255,255,255,0.78);
+      font-size: 0.8rem;
+    }
+
+    .reveal-footer-links a,
+    .reveal-footer-contact a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      display: inline-block;
+    }
+
+    .reveal-footer-links a:hover,
+    .reveal-footer-contact a:hover {
+      opacity: 0.7;
+      transform: translateX(3px);
+    }
+
+    .reveal-footer-bottom {
+      position: relative;
+      margin-top: 34px;
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: rgba(255,255,255,0.54);
+      font-size: 0.82rem;
+    }
+
+    .mega-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 110;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .mega-menu-backdrop {
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+    }
+
+    .mega-menu-panel {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255, 234, 178, 0.06) 0%, rgba(255, 234, 178, 0.02) 20%, rgba(255, 234, 178, 0) 42%),
+        linear-gradient(180deg, #062c22 0%, #03231c 100%);
+      transform: translateY(-100%);
+      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+      overflow-y: auto;
+    }
+
+    .mega-menu-inner {
+      min-height: 100%;
+      padding: 20px 16px 18px;
+    }
+
+    .mega-menu-layout {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.9fr);
+      gap: 34px;
+      min-height: calc(100vh - 38px);
+      padding: 18px 18px 18px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mega-menu-visuals {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) minmax(0, 0.68fr);
+      gap: 16px;
+      min-height: 0;
+    }
+
+    .mega-menu-card {
+      position: relative;
+      display: block;
+      min-height: 0;
+      max-height: 440px;
+      border-radius: 22px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--gold);
+      background: #10231d;
+      isolation: isolate;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+    }
+
+    .mega-menu-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.01);
+      transition: transform 0.8s ease;
+    }
+
+    .mega-menu-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 18%, rgba(7,26,21,0.08) 54%, rgba(5,20,16,0.72) 100%),
+        linear-gradient(90deg, rgba(248,240,221,0.12) 0%, rgba(248,240,221,0.02) 24%, rgba(248,240,221,0) 52%);
+      z-index: 1;
+    }
+
+    .mega-menu-card-label {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 20px;
+      z-index: 2;
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: var(--gold);
+    }
+
+    .mega-menu-nav {
+      display: flex;
+      align-items: center;
+      min-height: 0;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      padding: 40px 18px 40px 10px;
+    }
+
+    .mega-menu-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .mega-menu-links li + li {
+      margin-top: 20px;
+    }
+
+    .mega-menu-links a {
+      display: inline-block;
+      text-decoration: none;
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4.6vw, 4rem);
+      line-height: 0.94;
+      letter-spacing: -0.035em;
+      color: var(--gold);
+      transition: color 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .mega-menu-links a:hover,
+    .mega-menu-links a:focus-visible {
+      color: #f2d18e;
+      transform: translateX(8px);
+      outline: none;
+    }
+
+    .mega-menu-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 74px;
+      height: 74px;
+      border: 1px solid rgba(231, 195, 121, 0.55);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .mega-menu-close:hover {
+      transform: rotate(90deg);
+      border-color: rgba(231, 195, 121, 0.92);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .mega-menu-close span {
+      position: absolute;
+      width: 24px;
+      height: 1.5px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 999px;
+    }
+
+    .mega-menu-close span:nth-child(1) { transform: rotate(45deg); }
+    .mega-menu-close span:nth-child(2) { transform: rotate(-45deg); }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    body.menu-open .mega-menu {
+      pointer-events: auto;
+    }
+
+    body.menu-open .mega-menu-backdrop {
+      opacity: 1;
+    }
+
+    body.menu-open .mega-menu-panel {
+      transform: translateY(0);
+    }
+
+    body.menu-open .mega-menu-card,
+    body.menu-open .mega-menu-nav {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    body.menu-open .mega-menu-card:nth-child(1) { transition-delay: 0.16s; }
+    body.menu-open .mega-menu-card:nth-child(2) { transition-delay: 0.24s; }
+    body.menu-open .mega-menu-nav { transition-delay: 0.3s; }
+
+    @media (max-width: 1100px) {
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-media {
+        min-height: 460px;
+      }
+
+      .vision-section {
+        min-height: 170vh;
+      }
+
+      .values-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .value-item:nth-child(3),
+      .value-item:nth-child(4) {
+        border-top: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .value-item:nth-child(3) {
+        border-left: none;
+      }
+
+      .leaders-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .leader-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .leader-modal-grid {
+        grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+      }
+
+      .reveal-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        align-items: end;
+      }
+
+      .mega-menu-layout {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 24px;
+        padding-right: 0;
+      }
+
+      .mega-menu-nav {
+        padding: 8px 12px 24px;
+      }
+
+      .mega-menu-links a {
+        font-size: clamp(2rem, 8vw, 3.2rem);
+      }
+
+      .mega-menu-card {
+        max-height: 240px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        padding: 0 20px;
+      }
+
+      .topbar-inner {
+        width: min(calc(100vw - 28px), 100%);
+        gap: 10px;
+      }
+
+      .section-dark {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .hero-about-inner,
+      .vision-inner {
+        width: min(calc(100vw - 40px), 100%);
+      }
+
+      .mission-pin-wrap {
+        display: block;
+        min-height: auto;
+      }
+
+      .mission-header {
+        min-height: auto;
+        margin-bottom: 24px;
+      }
+
+      .mission-canvas {
+        height: auto;
+        min-height: auto;
+        display: grid;
+        gap: 18px;
+      }
+
+      .mission-card {
+        position: relative !important;
+        inset: auto !important;
+        transform: none !important;
+        height: 320px;
+        min-height: 320px;
+      }
+
+      .values-pin-wrap {
+        display: block;
+        min-height: auto;
+      }
+
+      .values-header {
+        margin-bottom: 24px;
+      }
+
+      .values-grid {
+        height: auto;
+        min-height: auto;
+        gap: 0;
+      }
+
+      .value-item {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .leader-modal-dialog {
+        width: min(900px, 100%);
+        max-height: 94vh;
+      }
+
+      .leader-modal-grid {
+        grid-template-columns: 1fr;
+        max-height: 94vh;
+      }
+
+      .leader-modal-media {
+        min-height: 220px;
+        max-height: 220px;
+      }
+
+      .leader-modal-content {
+        max-height: calc(94vh - 220px);
+      }
+
+      .reveal-footer-bottom {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .topbar {
+        top: 16px;
+        padding: 0 16px;
+      }
+
+      .topbar-inner {
+        padding: 8px 12px;
+        gap: 8px;
+      }
+
+      .pill-btn {
+        padding: 10px 12px;
+        font-size: 0.76rem;
+        gap: 6px;
+        letter-spacing: 0.06em;
+      }
+
+      .topbar-logo img {
+        width: 72px;
+      }
+
+      .topbar.is-scrolled .topbar-logo img {
+        width: 58px;
+      }
+
+      .hero-about {
+        min-height: 92svh;
+      }
+
+      .hero-about-inner {
+        width: min(calc(100vw - 32px), 100%);
+        padding: 150px 0 72px;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 12vw, 4.6rem);
+        max-width: 100%;
+      }
+
+      .hero-tagline {
+        font-size: 0.95rem;
+        line-height: 1.64;
+      }
+
+      .intro-section {
+        padding-top: 84px;
+        padding-bottom: 84px;
+      }
+
+      .intro-copy {
+        padding: 28px 0;
+      }
+
+      .intro-media {
+        min-height: 360px;
+      }
+
+      .vision-section {
+        min-height: 180svh;
+      }
+
+      .vision-panel {
+        height: 100svh;
+        min-height: 100svh;
+      }
+
+      .vision-inner {
+        width: min(calc(100vw - 32px), 100%);
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 120px 0 72px;
+      }
+
+      .vision-line {
+        font-size: clamp(1.9rem, 8vw, 2.7rem);
+        line-height: 1.08;
+      }
+
+      .mission-section {
+        padding-top: 92px;
+        padding-bottom: 100px;
+      }
+
+      .mission-card {
+        border-radius: 18px;
+      }
+
+      .mission-card-copy {
+        padding: 22px 22px 24px;
+      }
+
+      .mission-card-title {
+        font-size: clamp(1.35rem, 5.2vw, 1.9rem);
+        line-height: 1.08;
+      }
+
+      .value-item {
+        min-height: 260px;
+        padding: 28px 22px 26px;
+      }
+
+      .value-icon {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 28px;
+      }
+
+      .leaders-section {
+        padding-bottom: 150px;
+      }
+
+      .leaders-header {
+        margin-bottom: 26px;
+      }
+
+      .leaders-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .leader-card,
+      .leader-card:last-child {
+        grid-column: auto;
+        min-height: 400px;
+      }
+
+      .leader-modal {
+        padding: 0;
+      }
+
+      .leader-modal-dialog {
+        width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+      }
+
+      .leader-modal-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 180px minmax(0, 1fr);
+        max-height: 100vh;
+        height: 100vh;
+      }
+
+      .leader-modal-media {
+        min-height: 180px;
+        max-height: 180px;
+      }
+
+      .leader-modal-content {
+        padding: 26px 22px 22px;
+        max-height: calc(100vh - 180px);
+      }
+
+      .reveal-footer-inner {
+        padding: 42px 20px 30px;
+      }
+
+      .mega-menu-inner {
+        padding: 16px 12px 16px;
+      }
+
+      .mega-menu-layout {
+        gap: 16px;
+      }
+
+      .mega-menu-visuals {
+        grid-template-rows: repeat(2, minmax(190px, 1fr));
+      }
+
+      .mega-menu-card {
+        max-height: 200px;
+        border-radius: 18px;
+      }
+
+      .mega-menu-card-label {
+        left: 18px;
+        right: 18px;
+        bottom: 16px;
+        font-size: clamp(1.7rem, 9vw, 2.6rem);
+      }
+
+      .mega-menu-links li + li {
+        margin-top: 14px;
+      }
+
+      .mega-menu-links a {
+        font-size: clamp(1.8rem, 9vw, 2.7rem);
+      }
+
+      .mega-menu-close {
+        top: 14px;
+        right: 14px;
+        width: 58px;
+        height: 58px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        top: 12px;
+        padding: 0 12px;
+      }
+
+      .topbar-inner {
+        width: min(calc(100vw - 24px), 100%);
+        gap: 4px;
+        padding: 8px 8px;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      }
+
+      .pill-btn {
+        min-width: 0;
+        padding: 9px 6px;
+        font-size: 0.68rem;
+        letter-spacing: 0.05em;
+      }
+
+      .topbar-logo img {
+        width: 56px;
+      }
+
+      .topbar.is-scrolled .topbar-logo img {
+        width: 46px;
+      }
+
+      .section-dark {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .hero-title {
+        font-size: clamp(2.65rem, 13vw, 4rem);
+      }
+
+      .intro-copy {
+        padding: 22px 0 0;
+      }
+
+      .intro-media {
+        min-height: 300px;
+        border-radius: 18px;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      .section-text,
+      .mission-header p,
+      .hero-tagline,
+      .value-text,
+      .leaders-tagline,
+      .reveal-footer-copy {
+        font-size: 0.95rem;
+      }
+
+      .vision-section {
+        min-height: 170svh;
+      }
+
+      .vision-panel {
+        height: 100svh;
+      }
+
+      .vision-inner {
+        min-height: 100svh;
+        padding: 108px 0 56px;
+      }
+
+      .vision-line {
+        font-size: clamp(1.45rem, 8vw, 2rem);
+        line-height: 1.14;
+      }
+
+      .mission-header {
+        margin-bottom: 18px;
+      }
+
+      .mission-card {
+        height: 280px;
+        min-height: 280px;
+      }
+
+      .mission-card-copy {
+        padding: 18px 16px 20px;
+      }
+
+      .mission-card-index {
+        width: 34px;
+        height: 34px;
+        font-size: 0.68rem;
+      }
+
+      .mission-card-title {
+        font-size: clamp(1.15rem, 5.6vw, 1.45rem);
+        line-height: 1.12;
+        max-width: 100%;
+      }
+
+      .values-section {
+        padding-bottom: 56px;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .value-item {
+        min-height: 0;
+        padding: 24px 18px 22px;
+      }
+
+      .value-item + .value-item,
+      .value-item:nth-child(3),
+      .value-item:nth-child(4) {
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .value-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 24px;
+      }
+
+      .value-title {
+        max-width: none;
+      }
+
+      .leader-card {
+        min-height: 360px;
+      }
+
+      .leader-name {
+        font-size: 1.6rem;
+      }
+
+      .leader-preview {
+        max-width: none;
+      }
+
+      .leader-modal-grid {
+        grid-template-rows: 150px minmax(0, 1fr);
+      }
+
+      .leader-modal-media {
+        min-height: 200px;
+        max-height: 200px;
+      }
+
+      .leader-modal-content {
+        padding: 75px 18px 18px;
+        max-height: calc(100vh - 150px);
+      }
+
+      .leader-modal-name {
+        font-size: 2rem;
+      }
+
+      .reveal-footer {
+        min-height: auto;
+      }
+
+      .reveal-footer-inner {
+        min-height: auto;
+        padding: 28px 16px 22px;
+      }
+
+      .reveal-footer-title {
+        font-size: clamp(1rem, 8vw, 2rem);
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-about-inner {
+        padding: 138px 0 64px;
+      }
+
+      .hero-title {
+        font-size: clamp(2.35rem, 12vw, 3.2rem);
+      }
+
+      .vision-line {
+        font-size: 1.32rem;
+      }
+
+      .mission-card {
+        height: 250px;
+        min-height: 250px;
+      }
+
+      .mission-card-title {
+        font-size: 1.08rem;
+      }
+
+      .leader-card {
+        min-height: 330px;
+      }
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+</head>
+<body class="is-loading">
+  <div class="page-transition"></div>
+
+  <div class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <a href="contact.html" class="pill-btn topbar-item" id="contactTrigger">
+        <span class="btn-text-roll" aria-hidden="true"><span>CONTACT US</span><span>CONTACT US</span></span>
+        <span class="sr-only">Contact Us</span>
+      </a>
+
+      <a href="index.html" class="topbar-logo topbar-item" aria-label="Vanté home">
+        <img src="vante_logo.png" alt="Vanté logo">
+      </a>
+
+      <button class="pill-btn menu-trigger topbar-item" id="menuTrigger" aria-label="Open menu" aria-expanded="false" aria-controls="megaMenu">
+        <span class="btn-text-roll" aria-hidden="true"><span>MENU</span><span>MENU</span></span>
+        <span class="menu-icon-lines" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero-about">
+      <div class="hero-about-inner">
+        <span class="hero-kicker">About Vanté</span>
+        <h1 class="hero-title">The elevated perspective</h1>
+        <p class="hero-tagline">
+          Our name is derived from Vantage, which reflects our belief in looking beyond the present to anticipate the future of cities.<br>
+          By combining foresight, refined design, and disciplined execution, we create developments that not only respond
+          to today’s needs but actively elevate urban futures for generations to come.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-dark intro-section">
+      <div class="intro-grid">
+        <div class="intro-copy">
+          <span class="section-kicker">Who we are</span>
+          <p class="section-text">
+            Vanté is an international real estate developer headquartered in Singapore, dedicated to elevating urban futures through visionary leadership, disciplined execution, and sustainable design.
+          </p>
+          <p class="section-text">
+            Guided by innovation and global standards of excellence, we develop enduring landmarks that enhance communities and shape contemporary city skylines.
+          </p>
+          <p class="section-text">
+            Through a design-led, future-ready approach, Vanté creates high-quality residential, commercial, mixed-use developments, and industrial parks in prime locations—assets defined by architectural clarity, placemaking excellence, and long-term investment value.
+          </p>
+        </div>
+
+        <div class="intro-media">
+          <img src="https://images.unsplash.com/photo-1607831876363-a7bc6b0e002b?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Luxury interior and architectural design meeting room">
+        </div>
+      </div>
+    </section>
+
+    <section class="vision-section" aria-label="Our vision section">
+      <div class="vision-panel">
+        <div class="vision-inner">
+          <span class="vision-kicker">Our vision</span>
+
+          <div class="vision-copy" id="visionCopy">
+            <p class="vision-line">
+              <span class="word">A</span>
+              <span class="word">globally</span>
+              <span class="word">respected</span>
+              <span class="word">innovative</span>
+              <span class="word">real</span>
+              <span class="word">estate</span>
+              <span class="word">developer,</span>
+              <span class="word">recognised</span>
+              <span class="word">for</span>
+              <span class="word">shaping</span>
+              <span class="word">cities</span>
+              <span class="word">and</span>
+              <span class="word">elevating</span>
+              <span class="word">urban</span>
+              <span class="word">futures</span>
+              <span class="word">through</span>
+              <span class="word">iconic,</span>
+              <span class="word">timeless</span>
+              <span class="word">developments.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-dark mission-section">
+      <div class="mission-stage" id="missionStage">
+        <div class="mission-pin-wrap" id="missionPinWrap">
+          <div class="mission-header">
+            <span class="section-kicker">Our mission</span>
+            <h2 class="section-title">Our promises in action</h2>
+            <p class="section-text">Our mission is to cultivate thriving neighborhoods through sustainable design and unwavering integrity. We are dedicated to laying the foundations for communities that grow, endure, and inspire for generations.</p>
+          </div>
+
+          <div class="mission-canvas" id="missionCanvas">
+            <article class="mission-card">
+              <div class="mission-card-media">
+                <img src="https://images.unsplash.com/photo-1633294159981-41b887ea5f72?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Architectural facade detail">
+              </div>
+              <div class="mission-card-copy">
+                <span class="mission-card-index">01</span>
+                <h3 class="mission-card-title">To create architecturally distinguished developments that elevate the urban experience.</h3>
+              </div>
+            </article>
+
+            <article class="mission-card">
+              <div class="mission-card-media">
+                <img src="https://images.unsplash.com/photo-1693517628912-5f15b4a4445e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Luxury residential development exterior">
+              </div>
+              <div class="mission-card-copy">
+                <span class="mission-card-index">02</span>
+                <h3 class="mission-card-title">To integrate sustainability, innovation, and design excellence in every development.</h3>
+              </div>
+            </article>
+
+            <article class="mission-card">
+              <div class="mission-card-media">
+                <img src="https://images.unsplash.com/photo-1771777329993-ec5d2438b371?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Elegant hospitality interior">
+              </div>
+              <div class="mission-card-copy">
+                <span class="mission-card-index">03</span>
+                <h3 class="mission-card-title">To deliver refined environments that enhance how people live, work, and connect.</h3>
+              </div>
+            </article>
+
+            <article class="mission-card">
+              <div class="mission-card-media">
+                <img src="https://images.unsplash.com/photo-1542114740389-9b46fb1e5be7?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modern office and commercial interior">
+              </div>
+              <div class="mission-card-copy">
+                <span class="mission-card-index">04</span>
+                <h3 class="mission-card-title">To build enduring value for investors, partners, and communities.</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-dark values-section">
+      <div class="values-shell">
+        <div class="values-pin-wrap" id="valuesPinWrap">
+          <div class="values-header">
+            <span class="section-kicker">Core values</span>
+            <h2 class="section-title">The principles behind every decision</h2>
+          </div>
+
+          <div class="values-grid" id="valuesGrid">
+            <div class="value-item">
+              <span class="value-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-heart-icon lucide-hand-heart"><path d="M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m14.45 13.39 5.05-4.694C20.196 8 21 6.85 21 5.75a2.75 2.75 0 0 0-4.797-1.837.276.276 0 0 1-.406 0A2.75 2.75 0 0 0 11 5.75c0 1.2.802 2.248 1.5 2.946L16 11.95"/><path d="m2 15 6 6"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a1 1 0 0 0-2.75-2.91"/></svg>
+              </span>
+
+              <h3 class="value-title"><span style="color: #f3d28d">R</span>esponsibility</h3>
+              <p class="value-text">
+                We are committed and take ownership to create a better future for our stakeholders, community & our planet.
+              </p>
+            </div>
+
+            <div class="value-item">
+              <span class="value-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+              </span>
+              <h3 class="value-title"><span style="color: #f3d28d">I</span>ntegrity</h3>
+              <p class="value-text">
+                Our foundation and staple in all areas of life: trust, transparency and honesty.
+              </p>
+            </div>
+
+            <div class="value-item">
+              <span class="value-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round-icon lucide-users-round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
+              </span>
+              <h3 class="value-title"><span style="color: #f3d28d">T</span>eamwork</h3>
+              <p class="value-text">
+                We believe in our team and promote employees’ growth to create an uplifting, professional environment and enhance spirit and loyalty.
+              </p>
+            </div>
+
+            <div class="value-item">
+              <span class="value-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+              </span>
+              <h3 class="value-title"><span style="color: #f3d28d">E</span>xcellence</h3>
+              <p class="value-text">
+                Our spirit for achieving our goals efficiently and effectively, unleashing our potential and pushing our boundaries. In every aspect of our business, we strive for excellence.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-dark leaders-section" id="leaders">
+      <div class="leaders-shell">
+        <div class="leaders-header">
+          <span class="section-kicker">Our leaders</span>
+          <h2 class="section-title">Led by experts</h2>
+          <p class="leaders-tagline">
+            Vanté is guided by an experienced leadership team with deep expertise in real estate development, investment, design management, and project execution. United by a shared vision, our leadership is committed to delivering excellence with discipline and foresight.
+          </p>
+        </div>
+
+        <div class="leaders-grid">
+          <button class="leader-card" type="button" data-leader="1" aria-haspopup="dialog" aria-controls="leaderModal">
+            <div class="leader-card-inner">
+              <div class="leader-card-media">
+                <img src="images/lyl.jpg" alt="Portrait of Lim Yu Liang">
+              </div>
+            </div>
+            <div class="leader-card-copy">
+              <span class="leader-role">Chief Executive Officer</span>
+              <h3 class="leader-name">Lim Yu Liang</h3>
+            </div>
+          </button>
+
+          <button class="leader-card" type="button" data-leader="2" aria-haspopup="dialog" aria-controls="leaderModal">
+            <div class="leader-card-inner">
+              <div class="leader-card-media">
+                <img src="images/clp.jpg" alt="Portrait of Chen Lian Pang">
+              </div>
+            </div>
+            <div class="leader-card-copy">
+              <span class="leader-role">Chairman</span>
+              <h3 class="leader-name">Chen Lian Pang</h3>
+            </div>
+          </button>
+
+          <button class="leader-card" type="button" data-leader="3" aria-haspopup="dialog" aria-controls="leaderModal">
+            <div class="leader-card-inner">
+              <div class="leader-card-media">
+                <img src="images/yvs.jpg" alt="Portrait of Yoong Voon Sin">
+              </div>
+            </div>
+            <div class="leader-card-copy">
+              <span class="leader-role">Chief Operating Officer</span>
+              <h3 class="leader-name">Yoong Voon Sin</h3>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="reveal-footer" id="contact">
+    <div class="reveal-footer-inner">
+      <div class="reveal-footer-grid">
+        <div>
+          <h2 class="reveal-footer-title">Spaces for the next era of urban living</h2>
+        </div>
+
+        <div>
+          <div class="reveal-footer-heading">Singapore</div>
+          <ul class="reveal-footer-contact">
+            <li>28 Maxwell Road, #04-06</li>
+            <li>Maxwell Chambers Suites</li>
+            <li>Singapore 069120</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="reveal-footer-heading">Ho Chi Minh City</div>
+          <ul class="reveal-footer-contact">
+            <li>Level 9, Times Square, 57-69F</li>
+            <li>Dong Khoi Street, Saigon Ward</li>
+            <li>Ho Chi Minh City, Vietnam</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reveal-footer-bottom">
+        <span>© 2026 Vanté. All rights reserved.</span>
+        <span>Privacy Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mega-menu" id="megaMenu" aria-hidden="true">
+    <div class="mega-menu-backdrop"></div>
+
+    <div class="mega-menu-panel">
+      <button class="mega-menu-close" id="megaMenuClose" aria-label="Close menu">
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="mega-menu-inner">
+        <div class="mega-menu-layout">
+          <div class="mega-menu-visuals">
+            <a class="mega-menu-card" href="#">
+              <img src="https://images.unsplash.com/photo-1758448500872-0d31e905a9e7?q=80&w=1480&auto=format&fit=crop" alt="Real estate development tower exterior">
+              <span class="mega-menu-card-label">Real Estate Development</span>
+            </a>
+            <a class="mega-menu-card" href="#">
+              <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop" alt="Consultancy meeting room interior">
+              <span class="mega-menu-card-label">Consultancy Services</span>
+            </a>
+          </div>
+
+          <nav class="mega-menu-nav" aria-label="Mega menu navigation">
+            <ul class="mega-menu-links">
+              <li><a href="about.html">About</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="csr.html">Corporate Social Responsibility</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="leader-modal" id="leaderModal" aria-hidden="true">
+    <div class="leader-modal-backdrop" data-close-modal="true"></div>
+    <div class="leader-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="leaderModalName">
+      <button class="leader-modal-close" type="button" id="leaderModalClose" aria-label="Close leader profile">
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="leader-modal-grid">
+        <div class="leader-modal-media">
+          <img id="leaderModalImage" src="" alt="">
+        </div>
+        <div class="leader-modal-content">
+          <span class="leader-modal-role" id="leaderModalRole"></span>
+          <h3 class="leader-modal-name" id="leaderModalName"></h3>
+          <p class="leader-modal-text" id="leaderModalText1"></p>
+          <span class="leader-modal-role" style="margin-top: 60px; margin-bottom: 20px">Core Strengths</span>
+          <p class="leader-modal-text" id="leaderModalText2"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    let missionCardsMM;
+    let visionMM;
+    let valuesMM;
+
+    const leaderProfiles = {
+      1: {
+        name: "Lim Yu Liang",
+        role: "Chief Executive Officer",
+        image: "images/lyl.jpg",
+        alt: "Portrait of Lim Yu Liang",
+        text1: "Mr. Lim Yu Liang is a real estate development and construction executive with over 23 years of experience delivering large-scale, high-value developments across multiple asset classes and regional markets. He is recognized for disciplined execution, strong technical grounding, and commercially driven leadership.<br><br> As Chief Executive Officer of Vanté, Mr. Lim leads the firm’s strategic direction, development execution, and operational governance, overseeing projects from feasibility and planning through delivery and long-term value creation.<br><br> Mr. Lim has been directly involved in the delivery of landmark developments across Malaysia, Vietnam, and the Middle East, including TA 3 & 4 @ KLCC, Traders Hotel @ KLCC, Prince Court Medical Centre, Government Complex Lots 2G5 & 2G6 (Putrajaya), Damansara Avenue, The Peak @ Iskandar, Westlake @ Puchong, and Kinrara Uptown, as well as major mixed-use developments in Vietnam and government and infrastructure projects in Saudi Arabia. Collectively, these projects represent multi-billion-dollar development value.<br><br> He previously held senior leadership roles with PMB Technology Berhad, Sunway Construction Berhad, TA Global Berhad, and Ahmad Zaki Resources Berhad.<br><br> Mr. Lim holds a Master’s Degree in Civil Engineering (Highway & Transportation) and a Bachelor’s Degree in Civil Engineering from University Putra Malaysia.",
+        text2: "Execution-driven leadership across real estate development and construction, integrating feasibility-led decision-making, disciplined cost and risk control, and on-the-ground delivery. Proven in leading large, complex projects, managing diverse stakeholders, and building robust development platforms focused on quality, efficiency, and sustainable asset value."
+      },
+      2: {
+        name: "Chen Lian Pang",
+        role: "Chairman",
+        image: "images/clp.jpg",
+        alt: "Portrait of Chen Lian Pang",
+        text1: "Mr. Chen Lian Pang has over 30 years of leadership experience in institutional real estate development across Asia. Formerly CEO of CapitaLand Residential (Southeast Asia) and CEO & Managing Director of TCC Capital Land, he led market entry, capital deployment, and large-scale residential developments in Vietnam, Thailand, Malaysia, and China. He played a key role in building CapitaLand’s Vietnam residential platform, delivering projects with strong execution discipline and resilient margins.<br><br>A Registered Professional Engineer (Singapore), Mr. Chen brings deep technical expertise to development risk assessment and execution oversight. He holds a First-Class Honours degree from Cardiff University, a Master of Science from the National University of Singapore, and attended Executive management program from Harvard Business School and Tsinghua University, equipping him with both analytical rigor and global capital market perspective.<br><br>Projects developed under his leadership have received multiple regional and national awards, including the PropertyGuru Asia Property Awards. He has also been personally recognized as “Real Estate Personality of the Year” and honoured with the Icon Award, reflecting industry recognition of his leadership and credibility.<br><br>As Chairman, Mr. Chen provides investors with clear strategic direction, disciplined capital stewardship, and strong governance oversight. He focuses on scaling platforms responsibly, aligning partner interests, and delivering sustainable, risk-adjusted returnsthrough well-executed developments in high-growth Asian markets.",
+        text2: "Mr. Chen is known for institutionalizing robust investment frameworks, including disciplined underwriting, risk management, and lifecycle asset management. His developments consistently balanced commercial performance with long-term asset quality, enabling capital preservation and repeatability across portfolios."
+      },
+      3: {
+        name: "Yoong Voon Sin",
+        role: "Chief Operating Officer",
+        image: "images/yvs.jpg",
+        alt: "Portrait of Yoong Voon Sin",
+        text1: "Mr. Yoong Voon Sin is a senior real estate development executive with 25+ years of international experience delivering large-scale residential and mixed-use developments across Singapore, Malaysia, Vietnam, and China.<br><br>Formerly with Pidemco Land / CapitaLand, Mr. Yoong contributed to landmark projects including the first residential development at KL Sentral, Kuala Lumpur, and multiple large-scale residential projects in Shanghai. As Vice President of Project Development, Mr. Yoong led major residential developments in Vietnam, including The Vista, Beau Rivage (Vista Verde), and Mulberry Lane.<br><br>As Regional General Manager for Central China, Mr. Yoong oversaw CapitaLand’s CapitaValue Homes SBU, driving product standardization and scalable housing delivery, including The Lakeside. Subsequently, as Project General Manager in Shenzhen, Mr. Yoong led the multi-phase Raffles City Shenzhen Mixed-Use Development with full P&L responsibility.<br><br>From 2017 to 2021, Mr. Yoong served as Project Development Head in Vietnam, overseeing a diverse portfolio including D’Edge, D1mension, Feliz En Vista, Vista Verde, Kris Vue, D28, as well as Seasons Avenue and Capital Place in Hanoi.<br><br>Most recently, Mr. Yoong was Senior Project Director at GDS IDC Services Pte. Ltd., leading data centre development at Nongsa Digital Park, Batam, Indonesia. He holds a Master of Science in Engineering and a Bachelor of Science in Civil Engineering from the University of Louisiana Lafayette, United States.",
+        text2: "Mr. Yoong’s expertise includes large-scale project execution, cross-border development, cost and risk management, value creation through design standardization, and leadership of multi-disciplinary teams from concept to delivery."
+      }
+    };
+
+    function setupTopbarBehavior() {
+      const topbar = document.getElementById('topbar');
+      if (!topbar) return;
+
+      const updateTopbarState = () => {
+        topbar.classList.toggle('is-scrolled', window.scrollY > 12);
+      };
+
+      updateTopbarState();
+      window.addEventListener('scroll', updateTopbarState, { passive: true });
+      window.addEventListener('resize', updateTopbarState);
+    }
+
+    function setupHeroIntroAnimation() {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.to('.hero-kicker', { opacity: 1, y: 0, duration: 0.8 }, 0.12)
+        .to('.hero-title', { opacity: 1, y: 0, duration: 0.95 }, 0.24)
+        .to('.hero-tagline', { opacity: 1, y: 0, duration: 0.9 }, 0.36);
+
+      gsap.from('.intro-copy', {
+        y: 34,
+        opacity: 0,
+        duration: 1.05,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.intro-copy',
+          start: 'top 82%',
+          once: true
+        }
+      });
+
+      gsap.from('.intro-media', {
+        y: 40,
+        opacity: 0,
+        duration: 1.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.intro-media',
+          start: 'top 82%',
+          once: true
+        }
+      });
+    }
+
+    function setupVisionReveal() {
+      const visionSection = document.querySelector('.vision-section');
+      const visionPanel = document.querySelector('.vision-panel');
+      const words = gsap.utils.toArray('#visionCopy .word');
+
+      if (!visionSection || !visionPanel || !words.length) return;
+
+      if (visionMM) {
+        visionMM.revert();
+      }
+
+      gsap.set(words, {
+        opacity: 1,
+        color: 'rgba(231,195,121,0.20)'
+      });
+
+      visionMM = gsap.matchMedia();
+
+      visionMM.add("(min-width: 769px)", () => {
+        const revealTl = gsap.timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: {
+            trigger: visionSection,
+            start: 'top top',
+            end: '+=135%',
+            scrub: 1,
+            pin: visionPanel,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+          }
+        });
+
+        revealTl.to(words, {
+          color: 'rgba(255,255,255,0.98)',
+          stagger: 0.11,
+          duration: 1.15
+        });
+
+        gsap.fromTo(visionPanel,
+          { backgroundSize: '108%' },
+          {
+            backgroundSize: '100%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: visionSection,
+              start: 'top top',
+              end: '+=135%',
+              scrub: true,
+              invalidateOnRefresh: true
+            }
+          }
+        );
+      });
+
+      visionMM.add("(max-width: 768px)", () => {
+        const revealTl = gsap.timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: {
+            trigger: visionSection,
+            start: 'top top',
+            end: '+=120%',
+            scrub: 1,
+            pin: visionPanel,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+          }
+        });
+
+        revealTl.to(words, {
+          color: 'rgba(255,255,255,0.98)',
+          stagger: 0.12,
+          duration: 1.15
+        });
+
+        gsap.fromTo(visionPanel,
+          { backgroundSize: '108%' },
+          {
+            backgroundSize: '100%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: visionSection,
+              start: 'top top',
+              end: '+=120%',
+              scrub: true,
+              pin: false,
+              invalidateOnRefresh: true
+            }
+          }
+        );
+      });
+    }
+
+    function setupMissionCards() {
+      const stage = document.getElementById('missionStage');
+      const pinWrap = document.getElementById('missionPinWrap');
+      const cards = gsap.utils.toArray('.mission-card');
+
+      if (!stage || !pinWrap || !cards.length) return;
+
+      if (missionCardsMM) {
+        missionCardsMM.revert();
+      }
+
+      missionCardsMM = gsap.matchMedia();
+
+      missionCardsMM.add("(min-width: 901px)", () => {
+        const stepDistance = Math.max(window.innerHeight * 0.9, 620);
+
+        cards.forEach((card, index) => {
+          gsap.set(card, {
+            position: "absolute",
+            inset: 0,
+            yPercent: index === 0 ? 0 : 115,
+            zIndex: index + 1
+          });
+        });
+
+        const tl = gsap.timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: {
+            trigger: stage,
+            start: "top top+=110",
+            end: () => `+=${((cards.length - 1) * stepDistance) + Math.max(window.innerHeight * 0.42, 260)}`,
+            scrub: 1,
+            pin: pinWrap,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+          }
+        });
+
+        cards.forEach((card, index) => {
+          if (index === 0) return;
+          tl.to(card, { yPercent: 0, duration: 1 }, index - 1);
+        });
+
+        tl.to({}, { duration: 0.45 }, cards.length - 1);
+      });
+
+      missionCardsMM.add("(max-width: 900px)", () => {
+        cards.forEach((card) => {
+          gsap.set(card, { clearProps: "all" });
+
+          gsap.from(card, {
+            y: 46,
+            opacity: 0,
+            duration: 1.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 86%",
+              once: true
+            }
+          });
+        });
+      });
+    }
+
+    function setupValueCards() {
+      const section = document.querySelector('.values-section');
+      const pinWrap = document.getElementById('valuesPinWrap');
+      const items = gsap.utils.toArray('.value-item');
+
+      if (!section || !pinWrap || !items.length) return;
+
+      if (valuesMM) {
+        valuesMM.revert();
+      }
+
+      valuesMM = gsap.matchMedia();
+
+      valuesMM.add("(min-width: 901px)", () => {
+        gsap.set(items, {
+          opacity: 0,
+          y: 44
+        });
+
+        const tl = gsap.timeline({
+          defaults: { ease: "power2.out" },
+          scrollTrigger: {
+            trigger: section,
+            start: "top top+=110",
+            end: () => `+=${Math.max(window.innerHeight * 3.1, 1800)}`,
+            scrub: 1,
+            pin: pinWrap,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+          }
+        });
+
+        items.forEach((item, index) => {
+          tl.to(item, { opacity: 1, y: 0, duration: 0.8 }, index)
+            .to({}, { duration: 0.35 }, index + 0.8);
+        });
+
+        tl.to({}, { duration: 0.6 }, items.length + 0.2);
+      });
+
+      valuesMM.add("(max-width: 900px)", () => {
+        items.forEach((item) => {
+          gsap.set(item, { clearProps: "all" });
+
+          gsap.from(item, {
+            y: 38,
+            opacity: 0,
+            duration: 1.05,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 86%",
+              once: true
+            }
+          });
+        });
+      });
+    }
+
+    function setupLeaderCards() {
+      const cards = gsap.utils.toArray('.leader-card');
+      if (!cards.length) return;
+
+      cards.forEach((card, index) => {
+        gsap.to(card, {
+          y: 0,
+          opacity: 1,
+          duration: 1.05,
+          delay: index * 0.05,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 84%',
+            once: true
+          }
+        });
+      });
+    }
+
+    function setupLeaderModal() {
+      const modal = document.getElementById('leaderModal');
+      const closeBtn = document.getElementById('leaderModalClose');
+      const image = document.getElementById('leaderModalImage');
+      const role = document.getElementById('leaderModalRole');
+      const name = document.getElementById('leaderModalName');
+      const text1 = document.getElementById('leaderModalText1');
+      const text2 = document.getElementById('leaderModalText2');
+      const leaderCards = document.querySelectorAll('.leader-card');
+
+      if (!modal || !closeBtn || !image || !role || !name || !text1 || !text2 || !leaderCards.length) return;
+
+      function openModal(id) {
+        const profile = leaderProfiles[id];
+        if (!profile) return;
+
+        image.src = profile.image;
+        image.alt = profile.alt;
+        role.textContent = profile.role;
+        name.textContent = profile.name;
+        text1.innerHTML = profile.text1;
+        text2.textContent = profile.text2;
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+      }
+
+      leaderCards.forEach((card) => {
+        card.addEventListener('click', () => {
+          openModal(card.getAttribute('data-leader'));
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', (e) => {
+        if (e.target.matches('[data-close-modal="true"]')) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+          closeModal();
+        }
+      });
+    }
+
+    function setupMenu() {
+      const menuTrigger = document.getElementById('menuTrigger');
+      const megaMenu = document.getElementById('megaMenu');
+      const backdrop = megaMenu ? megaMenu.querySelector('.mega-menu-backdrop') : null;
+      const closeBtn = document.getElementById('megaMenuClose');
+
+      if (!menuTrigger || !megaMenu) return;
+
+      function openMenu() {
+        document.body.classList.add('menu-open');
+        menuTrigger.setAttribute('aria-expanded', 'true');
+        megaMenu.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeMenu() {
+        document.body.classList.remove('menu-open');
+        menuTrigger.setAttribute('aria-expanded', 'false');
+        megaMenu.setAttribute('aria-hidden', 'true');
+      }
+
+      function toggleMenu() {
+        document.body.classList.contains('menu-open') ? closeMenu() : openMenu();
+      }
+
+      menuTrigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+      megaMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    }
+
+    function initPage() {
+      setupTopbarBehavior();
+      setupHeroIntroAnimation();
+      setupVisionReveal();
+      setupMissionCards();
+      setupValueCards();
+      setupLeaderCards();
+      setupLeaderModal();
+      setupMenu();
+
+      requestAnimationFrame(() => {
+        document.body.classList.remove('is-loading');
+        document.body.classList.add('page-ready');
+        ScrollTrigger.refresh();
+      });
+    }
+
+    window.addEventListener('load', initPage);
+
+    let resizeTimeout;
+    function handleResponsiveRefresh() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        setupVisionReveal();
+        setupMissionCards();
+        setupValueCards();
+        ScrollTrigger.refresh();
+      }, 220);
+    }
+
+    window.addEventListener('resize', handleResponsiveRefresh);
+    window.addEventListener('orientationchange', handleResponsiveRefresh);
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleResponsiveRefresh);
+    }
+  </script>
+</body>
+</html>
