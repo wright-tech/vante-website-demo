@@ -191,7 +191,7 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to bottom, rgba(16, 45, 36, 0.5), rgba(16, 45, 36, 0.3), rgba(16, 45, 36, 0.7));
+        linear-gradient(to bottom, rgba(16, 45, 36, 0.5), rgba(16, 45, 36, 0.2), rgba(16, 45, 36, 0.7));
       z-index: 1;
     }
 
@@ -361,8 +361,7 @@
     .hero-content {
       position: absolute;
       left: 50%;
-      top: 46%;
-      bottom: auto;
+      bottom: 9vh;
       z-index: 3;
       width: min(1200px, calc(100% - 48px));
       display: flex;
@@ -371,8 +370,8 @@
       align-items: center;
       text-align: center;
       padding: 20px 0;
-      transform: translate(-50%, -50%);
-      transform-origin: center center;
+      transform: translateX(-50%);
+      transform-origin: bottom center;
       will-change: opacity, transform;
       pointer-events: none;
     }
@@ -383,7 +382,6 @@
       font-weight: 700;
       letter-spacing: -0.04em;
       color: var(--light-gold);
-      /* color: #fff; */
       line-height: 1;
       padding-top: 0.14em;
       padding-bottom: 0.16em;
@@ -421,10 +419,29 @@
       will-change: transform, opacity, filter;
     }
 
-    .brand.brand-revealed .char {
-      opacity: 1;
-      transform: translateY(0%);
-      filter: blur(0);
+    .loaded .brand .char {
+      animation: charMaskReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .loaded .brand .char-wrap:nth-child(1) .char { animation-delay: 0.08s; }
+    .loaded .brand .char-wrap:nth-child(2) .char { animation-delay: 0.18s; }
+    .loaded .brand .char-wrap:nth-child(3) .char { animation-delay: 0.28s; }
+
+
+    @keyframes charMaskReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(115%);
+        filter: blur(6px);
+      }
+      45% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0%);
+        filter: blur(0);
+      }
     }
 
     .tagline-mask,
@@ -1457,14 +1474,11 @@
           <div class="hero-card" id="heroCard">
             <div class="video-layer">
               <video id="heroVideo" class="bg-video active" muted playsinline autoplay preload="auto">
-                <source src="https://res.cloudinary.com/dctowz6ir/video/upload/v1774928408/Residential_facade_lighting_202603261627_rifjnt.mp4" type="video/mp4" />
+                <source src="hcmc_video2.mp4" type="video/mp4" />
               </video>
 
               <video class="bg-video" muted playsinline autoplay preload="auto">
-                <source src="https://res.cloudinary.com/dctowz6ir/video/upload/v1774254339/hcmc_video2_gsaevy.mp4" type="video/mp4" />
-              </video>
-              <video class="bg-video" muted playsinline autoplay preload="auto">
-                <source src="https://res.cloudinary.com/dctowz6ir/video/upload/v1774253583/mazyt5sh1agb9tdsqtmc.mp4" type="video/mp4" />
+                <source src="video5.mp4" type="video/mp4" />
               </video>
             </div>
 
@@ -1496,7 +1510,7 @@
             <article class="info-card morph-hero-card" id="morphHeroCard"></article>
 
             <article class="info-card card-one" id="cardOne">
-              <img class="card-media" src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928408/add_sculpture___202603261605_qqmzlq.jpg" alt="Luxury residential tower at dusk">
+              <img class="card-media" src="https://images.unsplash.com/photo-1573958463969-876edfe174df?q=80&w=2072&auto=format&fit=crop" alt="Luxury residential tower at dusk">
               <div class="card-overlay"></div>
               <div class="card-copy">
                 <div class="eyebrow">Residential</div>
@@ -1505,7 +1519,7 @@
             </article>
 
             <article class="info-card card-two" id="cardTwo">
-              <img class="card-media" src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928423/487208946_1120093073464620_2263371809339972138_n_on9jmv.jpg" alt="Elegant mixed-use development facade">
+              <img class="card-media" src="https://images.unsplash.com/photo-1759671953272-a4719ca32266?q=80&w=1035&auto=format&fit=crop" alt="Elegant mixed-use development facade">
               <div class="card-overlay"></div>
               <div class="card-copy">
                 <div class="eyebrow">Mixed Use</div>
@@ -1514,7 +1528,7 @@
             </article>
 
             <article class="info-card card-three" id="cardThree">
-              <img class="card-media" src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928406/regenerate_this_image_202603291324_dsqsne.jpg" alt="Contemporary hospitality arrival experience">
+              <img class="card-media" src="https://images.unsplash.com/photo-1455587734955-081b22074882?q=80&w=1920&auto=format&fit=crop" alt="Contemporary hospitality arrival experience">
               <div class="card-overlay"></div>
               <div class="card-copy">
                 <div class="eyebrow">Hospitality</div>
@@ -1523,7 +1537,7 @@
             </article>
 
             <article class="info-card card-four" id="cardFour">
-              <img class="card-media" src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928403/regenerate_this_image_202603271445_zhiejg.jpg" alt="Refined office and commercial architecture">
+              <img class="card-media" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80" alt="Refined office and commercial architecture">
               <div class="card-overlay"></div>
               <div class="card-copy">
                 <div class="eyebrow">Commercial</div>
@@ -1631,11 +1645,11 @@
         <div class="mega-menu-layout">
           <div class="mega-menu-visuals">
             <a class="mega-menu-card" href="#">
-              <img src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928402/regenerate_this_image_202603261603_hvhcab.jpg" alt="Real estate development tower exterior">
+              <img src="https://images.unsplash.com/photo-1758448500872-0d31e905a9e7?q=80&w=1480&auto=format&fit=crop" alt="Real estate development tower exterior">
               <span class="mega-menu-card-label">Real Estate Development</span>
             </a>
             <a class="mega-menu-card" href="#">
-              <img src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928420/regenerate_this_image_202603271627_y4kta5.jpg" alt="Consultancy meeting room interior">
+              <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop" alt="Consultancy meeting room interior">
               <span class="mega-menu-card-label">Consultancy Services</span>
             </a>
           </div>
@@ -1704,7 +1718,6 @@
     let topbarBehaviorInitialized = false;
     let playlistInitialized = false;
     let resizeTimeout;
-    let brandRevealState = "idle";
 
     function updateLoaderProgress(percent) {
       const safePercent = Math.max(0, Math.min(100, Math.round(percent)));
@@ -1726,61 +1739,6 @@
       updateTopbarState();
       window.addEventListener("scroll", updateTopbarState, { passive: true });
       window.addEventListener("resize", updateTopbarState);
-    }
-
-    function setBrandToFinalState() {
-      const brand = document.querySelector(".brand");
-      if (!brand) return;
-
-      const chars = brand.querySelectorAll(".char");
-      gsap.killTweensOf(chars);
-      brand.classList.remove("brand-is-animating");
-      brand.classList.add("brand-revealed");
-      gsap.set(chars, {
-        opacity: 1,
-        yPercent: 0,
-        filter: "blur(0px)",
-        clearProps: "willChange"
-      });
-      brandRevealState = "done";
-    }
-
-    function playBrandReveal(forceFinal = false) {
-      const brand = document.querySelector(".brand");
-      if (!brand) return;
-
-      const chars = brand.querySelectorAll(".char");
-      if (!chars.length) return;
-
-      if (forceFinal) {
-        setBrandToFinalState();
-        return;
-      }
-
-      if (brandRevealState !== "idle") return;
-      brandRevealState = "animating";
-
-      brand.classList.remove("brand-revealed");
-      brand.classList.add("brand-is-animating");
-
-      gsap.killTweensOf(chars);
-      gsap.set(chars, {
-        opacity: 0,
-        yPercent: 115,
-        filter: "blur(6px)",
-        willChange: "transform, opacity, filter"
-      });
-
-      gsap.to(chars, {
-        opacity: 1,
-        yPercent: 0,
-        filter: "blur(0px)",
-        duration: 1.4,
-        ease: "power3.out",
-        stagger: 0.10,
-        overwrite: true,
-        onComplete: setBrandToFinalState
-      });
     }
 
     function resetHeroSequenceState() {
@@ -2166,7 +2124,6 @@
       document.body.classList.add("loaded");
       unlockScroll();
       initPageEffects();
-      playBrandReveal();
 
       if (siteLoader) {
         requestAnimationFrame(() => {
@@ -2336,7 +2293,6 @@
         }
         document.body.classList.add("loaded");
         initPageEffects();
-        playBrandReveal(true);
       }
     });
 

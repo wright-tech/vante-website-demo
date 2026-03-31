@@ -44,6 +44,7 @@
 
     :root {
       --gold: #e7c379;
+      --light-gold: #ffdc94;
       --gold-soft: rgba(231, 195, 121, 0.86);
       --text-light: rgba(255,255,255,0.88);
       --text-light-soft: rgba(255,255,255,0.72);
@@ -145,7 +146,7 @@
     }
 
     .topbar.is-scrolled .topbar-inner {
-      background: rgba(255, 247, 232, 0.10);
+      background: rgba(0, 0, 0, 0.3);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
@@ -304,8 +305,9 @@
       align-items: flex-end;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(16, 45, 36, 0.16), rgba(8, 24, 19, 0.90)),
-        url('https://images.unsplash.com/photo-1685979699419-071305d9c548?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;
+        linear-gradient(180deg, rgba(16, 45, 36, 0.05), rgba(8, 24, 19, 0.80)),
+        /* linear-gradient(360deg,rgba(20, 19, 19, 0.8) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 67%, rgba(20, 19, 19, 0.5) 100%), */
+        url('https://res.cloudinary.com/dctowz6ir/image/upload/v1774928431/regenerate_this_image_202603271439_gmybbd.jpg') center center / cover no-repeat;
     }
 
     .hero-about::after {
@@ -341,7 +343,7 @@
       font-size: clamp(3.8rem, 8.5vw, 7.2rem);
       line-height: 0.9;
       letter-spacing: -0.045em;
-      color: var(--gold);
+      color: var(--light-gold);
       margin: 0 0 18px;
       opacity: 0;
       transform: translateY(22px);
@@ -352,7 +354,7 @@
       font-size: clamp(1rem, 1.2vw, 1rem);
       line-height: 1.72;
       font-weight: 200;
-      color: rgba(255,255,255,0.84);
+      color: rgba(255,255,255,1);
       opacity: 0;
       transform: translateY(24px);
     }
@@ -408,7 +410,8 @@
       font-size: 1.08rem;
       line-height: 1.68;
       font-weight: 300;
-      color: var(--text-light-soft);
+      /* color: var(--text-light-soft); */
+      color: #fff;
     }
 
     .intro-copy .section-text + .section-text {
@@ -459,7 +462,7 @@
       isolation: isolate;
       background:
         linear-gradient(180deg, rgba(7, 21, 17, 0.38) 0%, rgba(5, 18, 14, 0.72) 55%, rgba(4, 13, 11, 0.84) 100%),
-        url('https://images.unsplash.com/photo-1728141033467-9933b142fc86?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;
+        url('https://res.cloudinary.com/dctowz6ir/image/upload/v1774928420/re-render_this_image_202603261639_mlb9cg.jpg') center center / cover no-repeat;
       background-size: cover;
       background-position: center center;
       background-attachment: fixed;
@@ -759,7 +762,8 @@
       font-size: 0.9rem;
       line-height: 1.5;
       font-weight: 300;
-      color: var(--text-light-soft);
+      /* color: var(--text-light-soft); */
+      color: #fff;
     }
 
     .leaders-grid {
@@ -1034,17 +1038,17 @@
       color: #fff;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(6, 24, 19, 0.12) 0%, rgba(6, 24, 19, 0.42) 38%, rgba(5, 18, 15, 0.82) 100%),
-        url('https://images.unsplash.com/photo-1757924432508-d4e92411caeb?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;
+        linear-gradient(180deg, rgba(6, 24, 19, 0.1) 0%, rgba(6, 24, 19, 0.2) 38%, rgba(5, 18, 15, 1) 100%),
+        url('https://images.unsplash.com/photo-1591269469224-0479a5f956c6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;
     }
 
     .reveal-footer::before {
       content: "";
       position: absolute;
       inset: 0;
-      background:
+      /* background:
         radial-gradient(circle at 50% 20%, rgba(231,195,121,0.18) 0%, rgba(231,195,121,0.06) 24%, rgba(231,195,121,0) 54%),
-        linear-gradient(180deg, rgba(9, 27, 22, 0.18) 0%, rgba(7, 19, 16, 0.72) 100%);
+        linear-gradient(180deg, rgba(9, 27, 22, 0.18) 0%, rgba(7, 19, 16, 0.72) 100%); */
       pointer-events: none;
     }
 
@@ -1950,7 +1954,7 @@
         <div class="intro-copy">
           <span class="section-kicker">Who we are</span>
           <p class="section-text">
-            Vanté is an international real estate developer headquartered in Singapore, dedicated to elevating urban futures through visionary leadership, disciplined execution, and sustainable design.
+            Vanté is an international real estate manager & developer headquartered in Singapore, dedicated to elevating urban futures through visionary leadership, disciplined execution, and sustainable design.
           </p>
           <p class="section-text">
             Guided by innovation and global standards of excellence, we develop enduring landmarks that enhance communities and shape contemporary city skylines.
@@ -1961,7 +1965,7 @@
         </div>
 
         <div class="intro-media">
-          <img src="https://images.unsplash.com/photo-1607831876363-a7bc6b0e002b?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Luxury interior and architectural design meeting room">
+          <img src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928426/505408966_1176857791121481_2966820933060778821_n_hdlqyf.jpg">
         </div>
       </div>
     </section>
@@ -2010,7 +2014,7 @@
           <div class="mission-canvas" id="missionCanvas">
             <article class="mission-card">
               <div class="mission-card-media">
-                <img src="https://images.unsplash.com/photo-1633294159981-41b887ea5f72?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Architectural facade detail">
+                <img src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928427/regenerate_this_image_202603271637_1_odagyc.jpg" alt="Architectural facade detail">
               </div>
               <div class="mission-card-copy">
                 <span class="mission-card-index">01</span>
@@ -2020,7 +2024,7 @@
 
             <article class="mission-card">
               <div class="mission-card-media">
-                <img src="https://images.unsplash.com/photo-1693517628912-5f15b4a4445e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Luxury residential development exterior">
+                <img src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928406/regenerate_this_image_202603291324_dsqsne.jpg" alt="Luxury residential development exterior">
               </div>
               <div class="mission-card-copy">
                 <span class="mission-card-index">02</span>
@@ -2030,7 +2034,7 @@
 
             <article class="mission-card">
               <div class="mission-card-media">
-                <img src="https://images.unsplash.com/photo-1771777329993-ec5d2438b371?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Elegant hospitality interior">
+                <img src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928408/add_sculpture___202603261605_qqmzlq.jpg" alt="Elegant hospitality interior">
               </div>
               <div class="mission-card-copy">
                 <span class="mission-card-index">03</span>
@@ -2040,7 +2044,7 @@
 
             <article class="mission-card">
               <div class="mission-card-media">
-                <img src="https://images.unsplash.com/photo-1542114740389-9b46fb1e5be7?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modern office and commercial interior">
+                <img src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928426/sculpture_is_in_202603271513_varphu.jpg" alt="Modern office and commercial interior">
               </div>
               <div class="mission-card-copy">
                 <span class="mission-card-index">04</span>
@@ -2203,11 +2207,11 @@
         <div class="mega-menu-layout">
           <div class="mega-menu-visuals">
             <a class="mega-menu-card" href="#">
-              <img src="https://images.unsplash.com/photo-1758448500872-0d31e905a9e7?q=80&w=1480&auto=format&fit=crop" alt="Real estate development tower exterior">
+              <img src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928402/regenerate_this_image_202603261603_hvhcab.jpg" alt="Real estate development tower exterior">
               <span class="mega-menu-card-label">Real Estate Development</span>
             </a>
             <a class="mega-menu-card" href="#">
-              <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop" alt="Consultancy meeting room interior">
+              <img src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928420/regenerate_this_image_202603271627_y4kta5.jpg" alt="Consultancy meeting room interior">
               <span class="mega-menu-card-label">Consultancy Services</span>
             </a>
           </div>
