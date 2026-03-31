@@ -1414,15 +1414,66 @@
       }
     }
 
-/* === MOBILE FIXES === */
-html, body { overflow-x: hidden !important; }
+    /* === MOBILE POLISH FIXES === */
+    html,
+    body {
+      overflow-x: hidden;
+    }
 
-@media (max-width: 640px) {
-  .mobile-story-track { overflow: hidden !important; }
-  .page-shell { padding-bottom: 110svh !important; }
-}
+    body {
+      overscroll-behavior-x: none;
+    }
 
-</style>
+    .hero,
+    .sticky-scene,
+    .mobile-story,
+    .mobile-story-track,
+    .mobile-story-card,
+    .page-shell,
+    .reveal-footer {
+      max-width: 100vw;
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        min-height: 100svh;
+        overflow-x: hidden;
+      }
+
+      .sticky-scene,
+      .mobile-story,
+      .mobile-story-track {
+        overflow: hidden;
+      }
+
+      .mobile-story-track {
+        left: 0;
+        right: 0;
+        width: 100%;
+        contain: layout paint;
+      }
+
+      .mobile-story-card {
+        max-width: calc(100vw - 32px);
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+      }
+
+      .page-shell {
+        padding-bottom: calc(var(--footer-reveal-height) + 8svh);
+      }
+
+      .reveal-footer {
+        height: max(var(--footer-reveal-height), 100svh);
+      }
+
+      .reveal-footer-inner {
+        min-height: 100%;
+      }
+    }
+
+  </style>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
@@ -1466,7 +1517,8 @@ html, body { overflow-x: hidden !important; }
           <div class="hero-card" id="heroCard">
             <div class="video-layer">
               <video id="heroVideo" class="bg-video active" muted playsinline autoplay preload="auto">
-                <source src="https://res.cloudinary.com/dctowz6ir/video/upload/c_crop,h_0.93,g_north,q_auto,f_auto/v1774928408/Residential_facade_lighting_202603261627_rifjnt.mp4" type="video/mp4" />
+                <source src="https://res.cloudinary.com/dctowz6ir/video/upload/v1774928408/Residential_facade_lighting_202603261627_rifjnt.mp4" type="video/mp4" />
+                <!-- <source src="https://res.cloudinary.com/dctowz6ir/video/upload/c_crop,h_0.93,g_north,q_auto,f_auto/v1774928408/Residential_facade_lighting_202603261627_rifjnt.mp4" type="video/mp4" /> -->
               </video>
 
               <video class="bg-video" muted playsinline autoplay preload="auto">
@@ -1714,6 +1766,9 @@ html, body { overflow-x: hidden !important; }
     let playlistInitialized = false;
     let resizeTimeout;
     let brandRevealState = "idle";
+    let currentLayoutMode = "";
+    let lastViewportWidth = window.innerWidth;
+    let lastViewportHeight = window.innerHeight;
 
     function updateLoaderProgress(percent) {
       const safePercent = Math.max(0, Math.min(100, Math.round(percent)));
@@ -1892,8 +1947,11 @@ html, body { overflow-x: hidden !important; }
         targetTop = Math.max(110, vh - cardHeight - 30);
 
         const stepDistance = cardWidth + mobileGap;
-        const railDistance = stepDistance * mobileCards.length;
-        const mobileScrollEnd = Math.round((vh * 1.55) + railDistance);
+        const lastCardIndex = Math.max(0, mobileCards.length - 1);
+        const finalCardLeft = vw + 24 + (lastCardIndex * stepDistance);
+        const travelDistance = finalCardLeft - targetLeft;
+        const holdDistance = Math.round(vh * 0.34);
+        const mobileScrollEnd = Math.round((vh * 1.18) + travelDistance + holdDistance);
 
         gsap.set(heroCard, {
           width: vw,
@@ -1920,7 +1978,7 @@ html, body { overflow-x: hidden !important; }
             width: cardWidth,
             height: cardHeight,
             top: targetTop,
-            left: targetLeft + ((index + 1) * (cardWidth + mobileGap)),
+            left: vw + 24 + (index * (cardWidth + mobileGap)),
             x: 0,
             y: 0,
             opacity: 1,
@@ -1955,12 +2013,13 @@ html, body { overflow-x: hidden !important; }
           duration: 0.28
         }, 0)
         .to(heroContent, { opacity: 0, duration: 0.2 }, 0.02)
-        .to(mobileHeadline, { opacity: 1, y: 0, duration: 0.16 }, 0.30)
-        .to({}, { duration: 0.18 }, 0.46)
+        .to(mobileHeadline, { opacity: 1, y: 0, duration: 0.18 }, 0.30)
+        .to({}, { duration: 0.16 }, 0.48)
         .to([heroCard, ...mobileCards.filter(Boolean)], {
-          x: -railDistance,
-          duration: 0.38
-        }, 0.62)
+          x: -travelDistance,
+          duration: 0.34
+        }, 0.56)
+        .to({}, { duration: 0.18 }, 0.90)
         .to({}, { duration: 0.01 });
 
         return;
@@ -2154,6 +2213,9 @@ html, body { overflow-x: hidden !important; }
     function initPageEffects() {
       if (pageEffectsInitialized) return;
       pageEffectsInitialized = true;
+      currentLayoutMode = getLayoutMode();
+      lastViewportWidth = window.innerWidth;
+      lastViewportHeight = window.innerHeight;
 
       setupTopbarBehavior();
       resetHeroSequenceState();
@@ -2308,6 +2370,69 @@ html, body { overflow-x: hidden !important; }
       playVideo(currentIndex);
     }
 
+    function getLayoutMode() {
+      const width = window.innerWidth;
+      if (width < 640) return "mobile";
+      if (width < 1100) return "tablet";
+      return "desktop";
+    }
+
+    function shouldRunResponsiveRefresh(source = "resize") {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const nextLayoutMode = getLayoutMode();
+      const widthDelta = Math.abs(width - lastViewportWidth);
+      const heightDelta = Math.abs(height - lastViewportHeight);
+      const layoutChanged = nextLayoutMode !== currentLayoutMode;
+
+      if (!pageEffectsInitialized) {
+        lastViewportWidth = width;
+        lastViewportHeight = height;
+        currentLayoutMode = nextLayoutMode;
+        return false;
+      }
+
+      if (!currentLayoutMode) {
+        currentLayoutMode = nextLayoutMode;
+      }
+
+      if (layoutChanged) {
+        lastViewportWidth = width;
+        lastViewportHeight = height;
+        currentLayoutMode = nextLayoutMode;
+        return true;
+      }
+
+      const isMobile = nextLayoutMode === "mobile";
+
+      if (isMobile) {
+        if (source === "visualViewport" && widthDelta < 6) {
+          lastViewportHeight = height;
+          return false;
+        }
+
+        if (widthDelta < 6 && heightDelta < 120) {
+          lastViewportHeight = height;
+          return false;
+        }
+
+        if (widthDelta < 24) {
+          lastViewportHeight = height;
+          return false;
+        }
+      } else {
+        if (widthDelta < 8 && heightDelta < 80) {
+          lastViewportHeight = height;
+          return false;
+        }
+      }
+
+      lastViewportWidth = width;
+      lastViewportHeight = height;
+      currentLayoutMode = nextLayoutMode;
+      return true;
+    }
+
     function handleResponsiveRefresh() {
       const topbar = document.getElementById("topbar");
       if (topbar) {
@@ -2322,18 +2447,31 @@ html, body { overflow-x: hidden !important; }
 
     window.addEventListener("resize", () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(handleResponsiveRefresh, 220);
+      resizeTimeout = setTimeout(() => {
+        if (shouldRunResponsiveRefresh("resize")) {
+          handleResponsiveRefresh();
+        }
+      }, 220);
     });
 
     window.addEventListener("orientationchange", () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(handleResponsiveRefresh, 260);
+      resizeTimeout = setTimeout(() => {
+        lastViewportWidth = 0;
+        lastViewportHeight = 0;
+        currentLayoutMode = "";
+        handleResponsiveRefresh();
+      }, 300);
     });
 
-    if (false && window.visualViewport) {
+    if (window.visualViewport) {
       window.visualViewport.addEventListener("resize", () => {
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(handleResponsiveRefresh, 220);
+        resizeTimeout = setTimeout(() => {
+          if (shouldRunResponsiveRefresh("visualViewport")) {
+            handleResponsiveRefresh();
+          }
+        }, 220);
       });
     }
 
@@ -2344,6 +2482,9 @@ html, body { overflow-x: hidden !important; }
           siteLoader.classList.add("is-hidden");
         }
         document.body.classList.add("loaded");
+        currentLayoutMode = getLayoutMode();
+        lastViewportWidth = window.innerWidth;
+        lastViewportHeight = window.innerHeight;
         initPageEffects();
         playBrandReveal(true);
       }
