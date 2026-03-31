@@ -1413,7 +1413,16 @@
         transform: translateY(0) scale(1);
       }
     }
-  </style>
+
+/* === MOBILE FIXES === */
+html, body { overflow-x: hidden !important; }
+
+@media (max-width: 640px) {
+  .mobile-story-track { overflow: hidden !important; }
+  .page-shell { padding-bottom: 110svh !important; }
+}
+
+</style>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
@@ -1536,12 +1545,12 @@
         <div class="mobile-story" id="mobileStory" aria-hidden="true">
           <div class="mobile-story-headline" id="mobileStoryHeadline">
             <h2>Endless<br>possibilities await</h2>
-            <p>Curated residences, hospitality, and commercial destinations designed for enduring value.</p>
+            <p>Stay tuned as we unveil spaces designed for enduring value and urban elegance.</p>
           </div>
 
           <div class="mobile-story-track" id="mobileStoryTrack">
             <article class="mobile-story-card" id="mobileStoryCardOne">
-              <img class="card-media" src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=80" alt="Luxury residential tower at dusk">
+              <img class="card-media" src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928408/add_sculpture___202603261605_qqmzlq.jpg" alt="Luxury residential tower at dusk">
               <div class="card-overlay"></div>
               <div class="card-copy">
                 <div class="eyebrow">Residential</div>
@@ -1550,7 +1559,7 @@
             </article>
 
             <article class="mobile-story-card" id="mobileStoryCardTwo">
-              <img class="card-media" src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80" alt="Elegant mixed-use development facade">
+              <img class="card-media" src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928423/487208946_1120093073464620_2263371809339972138_n_on9jmv.jpg" alt="Elegant mixed-use development facade">
               <div class="card-overlay"></div>
               <div class="card-copy">
                 <div class="eyebrow">Mixed Use</div>
@@ -1559,7 +1568,7 @@
             </article>
 
             <article class="mobile-story-card" id="mobileStoryCardThree">
-              <img class="card-media" src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1200&q=80" alt="Contemporary hospitality arrival experience">
+              <img class="card-media" src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928406/regenerate_this_image_202603291324_dsqsne.jpg" alt="Contemporary hospitality arrival experience">
               <div class="card-overlay"></div>
               <div class="card-copy">
                 <div class="eyebrow">Hospitality</div>
@@ -1568,7 +1577,7 @@
             </article>
 
             <article class="mobile-story-card" id="mobileStoryCardFour">
-              <img class="card-media" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="Refined office and commercial architecture">
+              <img class="card-media" src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928403/regenerate_this_image_202603271445_zhiejg.jpg" alt="Refined office and commercial architecture">
               <div class="card-overlay"></div>
               <div class="card-copy">
                 <div class="eyebrow">Commercial</div>
@@ -2321,7 +2330,7 @@
       resizeTimeout = setTimeout(handleResponsiveRefresh, 260);
     });
 
-    if (window.visualViewport) {
+    if (false && window.visualViewport) {
       window.visualViewport.addEventListener("resize", () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(handleResponsiveRefresh, 220);
