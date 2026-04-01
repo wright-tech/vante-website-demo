@@ -987,15 +987,57 @@
     }
 
     /* Improve select appearance */
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      border-right: 1.5px solid var(--gold);
+      border-bottom: 1.5px solid var(--gold);
+      transform: translateY(-60%) rotate(45deg);
+      pointer-events: none;
+      opacity: 0.95;
+    }
+
     .contact-form select {
       appearance: none;
-      background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%),
-                        linear-gradient(135deg, var(--gold) 50%, transparent 50%);
-      background-position: calc(100% - 18px) calc(50% - 3px),
-                           calc(100% - 12px) calc(50% - 3px);
-      background-size: 6px 6px, 6px 6px;
-      background-repeat: no-repeat;
-      padding-right: 40px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: rgba(255,255,255,0.045);
+      background-image: none;
+      color: #fff;
+      padding: 15px 48px 15px 16px;
+      line-height: 1.35;
+      cursor: pointer;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+
+    .contact-form select::-ms-expand {
+      display: none;
+    }
+
+    .contact-form select:focus {
+      outline: none;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      border-color: rgba(231,195,121,0.5);
+      background-color: rgba(255,255,255,0.06);
+    }
+
+    .contact-form select option {
+      color: #0f241d;
+      background-color: #f3efe7;
+    }
+
+    .contact-form select option[disabled] {
+      color: #6f6f6f;
     }
 
     /* Slight spacing polish */
@@ -1090,7 +1132,7 @@
 
               <div class="form-group">
                 <label>Phone number</label>
-                <input type="tel" name="website_lead[phone_number]" placeholder="Phone number (optional)">
+                <input type="tel" name="website_lead[phone_number]" placeholder="Phone number" required>
               </div>
             </div>
 
@@ -1107,15 +1149,17 @@
             </div>
 
             <div class="form-group">
-              <label>Enquiry type</label>
-              <select name="website_lead[contact_purpose]" required>
-                <option value="" disabled selected>Select enquiry type</option>
-                <option value="General Enquiry">General Enquiry</option>
-                <option value="Partnership">Partnership</option>
-                <option value="Investment">Investment</option>
-                <option value="Consultancy Services">Consultancy Services</option>
-                <option value="Media/Press">Media / Press</option>
-              </select>
+              <label for="contact-purpose">Enquiry type</label>
+              <div class="select-wrap">
+                <select id="contact-purpose" name="website_lead[contact_purpose]" required>
+                  <option value="" disabled selected>Select enquiry type</option>
+                  <option value="General Enquiry">General Enquiry</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Investment">Investment</option>
+                  <option value="Consultancy Services">Consultancy Services</option>
+                  <option value="Media/Press">Media / Press</option>
+                </select>
+              </div>
             </div>
 
             <div class="form-group">
@@ -1138,7 +1182,7 @@
               <div class="form-status" id="formStatus" aria-live="polite"></div>
             </div>
 
-            <button type="submit" class="submit-btn">Submit enquiry</button>
+            <button type="submit" class="submit-btn" id="submit_button">Submit enquiry</button>
           </form>
         </div>
         <div class="contact-card">
@@ -1335,6 +1379,15 @@
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape") closeMenu();
       });
+    });
+
+    document.getElementById('lead-form').addEventListener('submit', function () {
+      const btn = document.getElementById('submit_button');
+
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Submitting...";
+      }
     });
   </script>
 </body>
